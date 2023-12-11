@@ -7,7 +7,7 @@ const getTokenFromLocalStorage = () => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
       const parsedUserInfo = JSON.parse(userInfo);
-      console.log('found');
+    
       return parsedUserInfo.token;
     }
     console.log(' not found');

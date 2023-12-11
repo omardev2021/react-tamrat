@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card, Button ,Spinner, Container} from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Card ,Spinner, Container} from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useGetOrderDetailsQuery } from '../slices/ordersApiSlice';
 import { usePayOrderMutation } from '../slices/ordersApiSlice';
-import { useUploadOrderMutation } from '../slices/ordersApiSlice';
+import Meta from '../components/Meta';
+import { BASE_URL } from '../constants';
 
 
 import { toast } from 'react-toastify';
@@ -22,14 +23,12 @@ const OrderScreen = () => {
 
   const {
     data: order,
-    refetch,
     isLoading,
     error,
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading:isLoading2 }] = usePayOrderMutation();
 
-  const [upload, { isLoading:isLoading3 }] = useUploadOrderMutation();
 
   const handleImageChange = (event) => {
     // Handle the image change and update the state
@@ -58,7 +57,7 @@ console.log(res)
     const formData = new FormData();
     formData.append('image', selectedImage);
     formData.append('order', order.order.id);
-    axios.post('http://127.0.0.1:8000/api/upload-image', formData)
+    axios.post(`${BASE_URL}/api/upload-image`, formData)
         .then(response => {
             console.log(response.data.message);
             toast.success('receipt submitted successfully')
@@ -78,6 +77,14 @@ console.log(res)
     <Message variant='danger'>{error.data}</Message>
   ) : (
     <Container>
+        {
+      i18n.language === 'en' ? (
+        
+        <Meta title={'Tamrat Dates - Order Page'} />
+      ) : (
+        <Meta title={'تمرات - صفحة الطلب'} />
+      )
+    }
       <h1>{t('place1')} #{order.order.id}</h1>
       <Row>
         <Col md={8}>
@@ -95,7 +102,7 @@ console.log(res)
       <strong>{t('place5')}</strong>
       {order.order.address}, {order.order.city} , {order.order.country}
     </p>
-    {order.order.isDelivered == 1 ? (
+    {order.order.isDelivered === 1 ? (
       <Message variant='success'>Delivered</Message>
     ) : (
       <Message variant='danger'>{t('place6')}</Message>
@@ -108,7 +115,7 @@ console.log(res)
       <strong>{t('place8')} </strong>
       {order.order.paymentMethod}
     </p>
-    {cart.paymentMethod == 'bank' && (
+    {cart.paymentMethod === 'bank' && (
         <Row style={{ padding: '20px' }}>
         <Col sm={3}>
           <h5 className="mt-4">{t('bankName')}</h5>
@@ -199,7 +206,7 @@ console.log(res)
     </ListGroup.Item>
    {!order.order.isPaid && (
      <>
-           {order.order.paymentMethod == 'bank' ? (
+           {order.order.paymentMethod === 'bank' ? (
            <ListGroup.Item>
                     
            {isLoading2 ? (

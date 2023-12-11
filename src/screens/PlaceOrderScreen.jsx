@@ -6,13 +6,14 @@ import { Button, Row, Col, ListGroup, Image, Card ,Form,Spinner, Container} from
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
-import Loader from '../components/Loader';
 import { useCreateOrderMutation } from '../slices/ordersApiSlice';
 import { clearCartItems } from '../slices/cartSlice';
 import { useTranslation } from 'react-i18next';
 import { setCoupon , removeCoupon} from '../slices/cartSlice';
 import { useCheckMutation } from '../slices/couponApiSlice';
 import { FaTrash } from 'react-icons/fa';
+import Meta from '../components/Meta';
+
 
 
 const PlaceOrderScreen = () => {
@@ -29,11 +30,11 @@ const PlaceOrderScreen = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [check, { isLoading3, error3 }] = useCheckMutation();
+  const [check, { isLoading3 }] = useCheckMutation();
 
   useEffect(() => {
  
-      console.log(cart.cartItems);
+ 
     if (!cart.shippingAddress.address) {
       navigate('/shipping');
     } else if (!cart.paymentMethod) {
@@ -48,12 +49,21 @@ const PlaceOrderScreen = () => {
       // Add logic to apply the coupon
       const res = await check({coupon:couponCode}).unwrap();
       dispatch(setCoupon({ ...res }));
-      toast.success('coupon applied successfully.');
+      if(i18n.language === 'en') {
+        toast.success('coupon applied successfully.');
+
+      } else {
+        toast.success('تم تطبيق الكوبون بنجاح');
+
+      }
       // You can add further logic here, e.g., make an API call to validate the coupon
     } catch (error) {
-      console.error('Error applying coupon:', error);
-      // Handle the error and provide feedback to the user
-      toast.error('Failed to apply coupon. Please try again.');
+      if(i18n.language === 'en') {
+        toast.error('Coupon is incorrect');
+ 
+      } else {
+        toast.error('الكوبون غير صحيح');
+      }
     }
   };
 
@@ -89,6 +99,14 @@ const PlaceOrderScreen = () => {
 
   return (
     <Container>
+         {
+      i18n.language === 'en' ? (
+        
+        <Meta title={'Tamrat Dates - Order Summary'} />
+      ) : (
+        <Meta title={'تمرات - ملخص الطلب'} />
+      )
+    }
       <CheckoutSteps step1 step2 step3  />
       <Row>
         <Col md={8}>
@@ -221,7 +239,21 @@ const PlaceOrderScreen = () => {
                   style={{ borderTopLeftRadius: '0',borderBottomLeftRadius: '0'}}
 
                 />
-                <Button
+                {isLoading3 ? (
+     
+        <Button
+        variant="primary"
+        
+        className="coupon-button"
+        style={{ borderTopRightRadius: '0',borderBottomRightRadius: '0'}}
+
+      >
+         <Spinner animation="border" role="status">
+      </Spinner> 
+      </Button>
+    
+                ) : (
+                  <Button
                   variant="primary"
                   onClick={handleApplyCoupon}
                   className="coupon-button"
@@ -230,6 +262,8 @@ const PlaceOrderScreen = () => {
                 >
                   {t('coupon3')}
                 </Button>
+                )}
+             
               </div>
 {/* 
               <div className="input-group">

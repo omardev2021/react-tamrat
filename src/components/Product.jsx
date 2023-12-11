@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Col, Image } from 'react-bootstrap';
 import { FaMinus , FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
@@ -55,13 +55,13 @@ function Product({ product }) {
             <span>{product.price} {t('sar')}</span>
           </div>
           <div className="card-footer">
-            <button id="myBtn" className="btn-buy" onClick={openModal}>
+            <button id="myBtn" className="btn-buy a-link" onClick={openModal}>
             {t('home3')}
             </button>
             
             <br />
             <Link to={`/products/${product.slug}`}>
-              <button className="btn-buy mt-4"> {t('home4')}</button>
+              <button className="btn-buy mt-4 a-link"> {t('home4')}</button>
             </Link>
         
             {/* modal goes here... */}

@@ -4,7 +4,7 @@ import {Spinner} from 'react-bootstrap';
 
 import { toast } from 'react-toastify';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
@@ -12,6 +12,7 @@ import emailImage from '../assets/phone-tam.png'
 import phoneImage from '../assets/email-tam.png'
 import authImage from '../assets/auth.png'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 
 const AuthModal = ({show,handleClose}) => {
@@ -31,7 +32,7 @@ const AuthModal = ({show,handleClose}) => {
   const { t , i18n } = useTranslation();
 
   const dispatch = useDispatch();
-const navigate = useNavigate();
+// const navigate = useNavigate();
 
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const [sendSms, { isLoading:loadingSms }] = useSendSmsApiMutation();
@@ -59,25 +60,36 @@ const navigate = useNavigate();
     };
   }, [resendTimeout, otp]);
 
-  const handleResendOtp = () => {
-    setOtp(''); // Clear previous OTP when resending
-    // Add logic to resend OTP here
-  };
+  // const handleResendOtp = () => {
+  //   setOtp(''); // Clear previous OTP when resending
+  //   // Add logic to resend OTP here
+  // };
 
-  const resetall = () => {
-    // Add logic to reset all form values
-  };
+  // const resetall = () => {
+  //   // Add logic to reset all form values
+  // };
 
   const submitEmailForm = async (e) => {
     e.preventDefault();
     try {
-        const res = await sendEmail({ email }).unwrap();
-        console.log(res);
-        toast.success('otp sent');    
+         await sendEmail({ email }).unwrap();
+    
+        if(i18n.language === 'en') {
+          toast.success('The otp has been sent to your email');        
+        } else {
+          toast.success('تم ارسال رمز الدخول الى الايميل الخاص بك');      
+        }
+
         setReq(true);
         setMode('email');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+
+        if(i18n.language === 'en') {
+          toast.error('An error occurred, please try again');
+
+        } else {
+          toast.error('حصل خطأ ، الرجاء المحاولة مرة اخرى');
+        }
         
       }
   };
@@ -85,13 +97,25 @@ const navigate = useNavigate();
   const submitSMSForm = async (e) => {
     e.preventDefault();
     try {
-        const res = await sendSms({ phoneNumber }).unwrap();
-        console.log(res);
-        toast.success('otp sent');
+         await sendSms({ phoneNumber }).unwrap();
+        
+
+        if(i18n.language === 'en') {
+          toast.success('The otp has been sent to your phone');        
+        } else {
+          toast.success('تم ارسال رمز الدخول الى الجوال الخاص بك');      
+        }
+
         setReq(true);
         setMode('phone');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+   
+        if(i18n.language === 'en') {
+          toast.error('An error occurred, please try again');
+
+        } else {
+          toast.error('حصل خطأ ، الرجاء المحاولة مرة اخرى');
+        }
         
       }
   };
@@ -101,20 +125,30 @@ const navigate = useNavigate();
     // Add logic to submit registration form
   
     try {
-      const res = await register({ 
+      await register({ 
         name:name,
         email:email2,
         phone:phoneNumber2
        }).unwrap();
-      console.log(res);
-      toast.success('otp sent to your phone');
+   
+      if(i18n.language === 'en') {
+        toast.success('The otp has been sent to your phone');        
+      } else {
+        toast.success('تم ارسال رمز الدخول الى الجوال الخاص بك');      
+      }
+
       setReq(true);
       setMode('phone');
       setIden('new')
       // setReq(true);
       // setMode('phone');
     } catch (err) {
-      toast.error('please check your information');
+      if(i18n.language === 'en') {
+        toast.error('An error occurred, please check your information');
+
+      } else {
+        toast.error('حصل خطأ ، الرجاء التحقق من بياناتك');
+      }
       
     }
   };
@@ -125,16 +159,26 @@ const navigate = useNavigate();
     try {
         if (mode === 'email') {
             const res = await loginUser({ email , otp }).unwrap();
-            console.log(res);
-            toast.success('done');    
+            if(i18n.language === 'en') {
+              toast.success('The otp has been sent to your email');        
+            } else {
+              toast.success('تم ارسال رمز الدخول الى الايميل الخاص بك');      
+            }
+             
             dispatch(setCredentials({ ...res }));
             handleClose()
             window.location.reload(false);
         }
         if (mode === 'phone') {
             const res = await loginUser({ phoneNumber , otp }).unwrap();
-            console.log(res);
-            toast.success('done');
+           
+            if(i18n.language === 'en') {
+              toast.success('The otp has been sent to your phone');        
+            } else {
+              toast.success('تم ارسال رمز الدخول الى الجوال الخاص بك');      
+            }
+
+
             dispatch(setCredentials({ ...res }));
             // navigate(redirect);    
             handleClose()
@@ -142,7 +186,12 @@ const navigate = useNavigate();
         }
     
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        if(i18n.language === 'en') {
+          toast.error('otp is not correct');
+  
+        } else {
+          toast.error('رمز التحقق غير صحيح');
+        }
         
       }
   };
@@ -164,8 +213,13 @@ const navigate = useNavigate();
        
     
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
-        
+
+        if(i18n.language === 'en') {
+          toast.error('otp is not correct');
+  
+        } else {
+          toast.error('رمز التحقق غير صحيح');
+        }        
       }
   };
 
@@ -187,7 +241,7 @@ const navigate = useNavigate();
                   {!showInputForm ? (
                     <>
                       <h5 className="py-3 text-center">{t('auth1')}</h5>
-                      <a href="#" className="text-decoration-none" onClick={() => setShowInputForm('sms')}>
+                      <Link to="#" className="text-decoration-none" onClick={() => setShowInputForm('sms')}>
                         <div className="sms p-3 mb-4">
                           <div className="d-flex justify-content-between">
                             <img src={phoneImage} width="50" alt="Telephone" />
@@ -195,8 +249,8 @@ const navigate = useNavigate();
                             <i className="bi bi-caret-right-fill" style={{ color: 'black' }}></i>
                           </div>
                         </div>
-                      </a>
-                      <a href="#" className="text-decoration-none" onClick={() => setShowInputForm('email')}>
+                      </Link>
+                      <Link to="#"  className="text-decoration-none" onClick={() => setShowInputForm('email')}>
                         <div className="sms p-3">
                           <div className="d-flex justify-content-between " style={{ gap: '40px' }}>
                             <img src={emailImage} width="50" alt="Email" />
@@ -204,7 +258,7 @@ const navigate = useNavigate();
                             <i className="bi bi-caret-right-fill" style={{ color: 'black' }}></i>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </>
                   ) : !req ? (
                     <>
@@ -226,8 +280,8 @@ const navigate = useNavigate();
                             </button>
                             )}
                       
-                          <a href="#" className="back-link" onClick={() => setShowInputForm('regis')} >{t('new')} </a>
-                          <a href="#" className="back-link" onClick={() => setShowInputForm(null)} >{t('back')} </a>
+                          <Link to="#"  className="back-link" onClick={() => setShowInputForm('regis')} >{t('new')} </Link>
+                          <Link to="#"  className="back-link" onClick={() => setShowInputForm(null)} >{t('back')} </Link>
 
                           </div>
                         </form>
@@ -249,8 +303,8 @@ const navigate = useNavigate();
                                  {t('continue')} 
                             </button>
                             )}
-                          <a href="#" className="back-link" onClick={() => setShowInputForm('regis')} >{t('new')} </a>
-                          <a href="#" className="back-link" onClick={() => setShowInputForm(null)} >{t('back')} </a>
+                          <Link to="#"  className="back-link" onClick={() => setShowInputForm('regis')} >{t('new')} </Link>
+                          <Link to="#"  className="back-link" onClick={() => setShowInputForm(null)} >{t('back')} </Link>
                           </div>
                         </form>
                       ) : showInputForm === 'regis' ? (
@@ -274,7 +328,7 @@ const navigate = useNavigate();
                             </button>
                             )}
                          
-                          <a href="#" className="back-link" onClick={() => setShowInputForm(null)} >{t('registeration5')}</a>
+                          <Link to="#"  className="back-link" onClick={() => setShowInputForm(null)} >{t('registeration5')}</Link>
                           </div>
                         </form>
                       ) : null}
@@ -282,7 +336,7 @@ const navigate = useNavigate();
                   ) : (
                     
                  <>
-                 {iden == 'new' ? (
+                 {iden === 'new' ? (
                         <form onSubmit={submitOTPFormNew}>
                         <h5 className="py-3 text-center">{t('checkOtp')}</h5>
                         <p>{t('checkOtpNew')} {phoneNumber2}</p>
@@ -290,7 +344,7 @@ const navigate = useNavigate();
                           <input type="text" name="otp" className="form-control" placeholder={t('enterOtp')} value={otp} onChange={(e) => setOtp(e.target.value)} />
                         </div>
                         <div className='text-center'>
-                        {lodaingEmail ? (
+                        {isLoading ? (
        <button type="submit" className="logbu " style={{margin:'auto'}} >
         <Spinner animation="border" role="status">
     </Spinner> 
@@ -309,7 +363,7 @@ const navigate = useNavigate();
                     <input type="text" name="otp" className="form-control" placeholder={t('enterOtp')} value={otp} onChange={(e) => setOtp(e.target.value)} />
                   </div>
                   <div className='text-center'>
-                  {lodaingEmail ? (
+                  {isLoading ? (
  <button type="submit" className="logbu " style={{margin:'auto'}} >
   <Spinner animation="border" role="status">
 </Spinner> 

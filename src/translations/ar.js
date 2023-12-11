@@ -231,7 +231,15 @@ const arTranslations = {
   registeration4:'التسجيل',
   registeration5:'هل لديك حساب بالفعل ؟',
 
-  sim:'منتجات ذات صلة'
+  sim:'منتجات ذات صلة',
+  account1:'حساب المستخدم',
+  account2:'الاسم',
+  account3:'الايميل',
+  account4:'الجوال',
+  account5:'طلباتي',
+
+  account6:'الحساب',
+  account7:'تسجيل خروج',
   };
   
   export default arTranslations;

@@ -11,7 +11,7 @@ import palm from '../assets/palm-icon.webp'
 import generosity from '../assets/generosity-icon.webp'
 import friutdate from '../assets/friutdate-icon.webp'
 import { toast } from 'react-toastify';
-
+import { Spinner } from 'react-bootstrap';
 import star from '../assets/star-icon.webp'
 import dates from '../assets/fruit-dates.webp'
 import friutdatesicon from '../assets/fruit-date-icon.webp'
@@ -59,21 +59,11 @@ const HomeScreen = () => {
           <Container fluid className="mt-5">
             <Row>
               <Col sm={6} className="mb-2">
-                <Skeleton height={300} width={400} />
+                <Skeleton height={400} width={600} />
               </Col>
-              <Col sm={12} md={6} className="text-center">
-          <div>
-            <h1 className="logo-text" style={{ color: '#7C9D64' }}>
-              <Skeleton width={200} />
-            </h1>
-            <p className="py-2 mb-3" style={{ fontSize: '20px', textAlign: i18n.language === 'ar' ? 'right' : 'left' }}>
-              <Skeleton count={3} />
-            </p>
-            <button className="btn-shop text-center" style={{ marginTop: '0px' }}>
-              <Skeleton width={150} />
-            </button>
-          </div>
-        </Col>
+              <Col sm={6} className="mb-2">
+                <Skeleton height={400} width={600} />
+              </Col>
               {/* <Col sm={6} className="text-center">
                 <div>
                   <h1 className="logo-text" style={{ color: '#7C9D64' }}>
@@ -121,10 +111,11 @@ const HomeScreen = () => {
 </p>
                         )}
                     
-
-                        <button className="btn-shop text-center" style={{ marginTop: '0px' }}>
+                    <Link to={'/shopping'}>
+                        <button className="btn-shop text-center a-link" style={{ marginTop: '0px' }}>
                         {t('main3')}
                         </button>
+                        </Link>
                     </div>
                 </Col>
             </Row>
@@ -134,7 +125,7 @@ const HomeScreen = () => {
         <section className="container best-seller">
             <h1 className="title">
             {t('home1')} <br />
-            {i18n.language == 'en' &&
+            {i18n.language === 'en' &&
             (
                 <>
                 <span style={{ fontSize: '18px', fontWeight: 'bold' }}> {t('home2')}</span>
@@ -159,11 +150,11 @@ const HomeScreen = () => {
            
             </Row>
         </section>
-        <section className="section-three text-center">
+        <section className="section-three text-center ">
             <Container>
-                <a href="/shop" style={{ color: '#7C9D64' }}>
-                    <button className="btn btn-btn"> {t('home6')}</button>
-                </a>
+                <Link to={'/shopping'} style={{ color: '#7C9D64' }}>
+                    <button className="btn btn-btn a-link" style={{marginTop:'3%',marginLeft:'10%'}}> {t('home6')}</button>
+                </Link>
             </Container>
         </section>
 
@@ -178,9 +169,11 @@ const HomeScreen = () => {
                             <h1 className="logo-text" style={{ color: '#7C9D64' }}>{t('home7')}</h1>
                             <p className="py-2 mb-3" style={{ fontSize: '20px' }}>
                             {t('home8')}                            </p>
-                            <button className="btn-shop text-center" style={{ marginTop: '0px' }}>
+                            <Link to={'/shopping'}>
+                            <button className="btn-shop text-center a-link" style={{ marginTop: '0px' }}>
                             {t('home9')}
                             </button>
+                            </Link>
                         </div>
                     </Col>
                 </Row>
@@ -204,7 +197,11 @@ const HomeScreen = () => {
                 </Col>
             </Row>
         
-                <button className="btn-shop">{t('home12')}</button>
+            <Link to={'/shopping'}>
+                            <button className="btn-shop text-center a-link" >
+                            {t('home9')}
+                            </button>
+                            </Link>
      
         </section>
 
@@ -226,7 +223,11 @@ const HomeScreen = () => {
                 </Col>
             </Row>
            
-                <button className="btn-shop">{t('home19')}</button>
+            <Link to={'/shopping'}>
+                            <button className="btn-shop text-center a-link" >
+                            {t('home9')}
+                            </button>
+                            </Link>
             
         </section>
 
@@ -244,7 +245,11 @@ const HomeScreen = () => {
                 </Row>
                 <div className="text-center">
            
-                        <button className="btn-shop mb-5">{t('home21')}</button>
+                <Link to={'/shopping'}>
+                            <button className="btn-shop text-center mb-5 a-link" >
+                            {t('home9')}
+                            </button>
+                            </Link>
                 
                 </div>
             </Container>
@@ -284,7 +289,15 @@ const HomeScreen = () => {
           <form onSubmit={letterHandler}>
         <h3 className="mb-3">{t('news1')}</h3>
         <input className="form-control w-25" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('news2')} required />
-        <button type='submit'>{t('news3')}</button>
+        {isLoading2 ? (
+     <button type="submit" className="logbu " style={{margin:'auto'}} >
+      <Spinner animation="border" role="status">
+  </Spinner> 
+   </button>
+                            ) :(
+                              <button type='submit'>{t('news3')}</button>
+                            )}
+     
         </form>
       </div>
 

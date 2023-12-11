@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
@@ -9,6 +9,7 @@ import { saveShippingAddress } from '../slices/cartSlice';
 import { useTranslation } from 'react-i18next';
 import { useGetCountriesQuery } from '../slices/productsApiSlice';
 import { useEffect } from 'react';
+import Meta from '../components/Meta';
 
 
 
@@ -44,7 +45,7 @@ const ShippingScreen = () => {
   const handleCountryChange = (event) => {
     const selectedCountry = event.target.value;
     setCountry(selectedCountry);
-    console.log(selectedCountry);
+    
     setCity(''); // Clear the city when the country changes
   };
 
@@ -56,6 +57,15 @@ const ShippingScreen = () => {
   
 
   return (
+    <>
+    {
+      i18n.language === 'en' ? (
+        
+        <Meta title={'Tamrat Dates - Shipping Information'} />
+      ) : (
+        <Meta title={'تمرات - معلومات الشحن'} />
+      )
+    }
     <FormContainer>
      
       <CheckoutSteps step1  />
@@ -158,6 +168,7 @@ const ShippingScreen = () => {
                 </button>
       </Form>
     </FormContainer>
+    </>
   );
 };
 

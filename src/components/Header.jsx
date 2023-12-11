@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import { FaSearch, FaTrash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { Navbar, Nav, Container,Badge ,Offcanvas,Button
+import {  Container ,Offcanvas,Button
 ,
 Row,
 Col,
 ListGroup,
 Image,
-Form,
-Card,
+
 FormControl
 , NavDropdown
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import { FaShoppingCart, FaUser ,FaGripHorizontal ,FaHome} from 'react-icons/fa';
 import { useSelector , useDispatch} from 'react-redux';
 import logo from '../assets/logo.webp'
@@ -48,6 +46,7 @@ const Header = () => {
 
 const dispatch = useDispatch();
     const handleLogout = () => {
+      navigate('/')
         dispatch(logout());
 
     }
@@ -85,28 +84,33 @@ setMenu(false)
           <Offcanvas.Title>{t('acc1')}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        <ListGroup variant='flush'>
+        <ListGroup variant='flush' className='offScroll'>
             {cartItems.map((item) => (
               <ListGroup.Item key={item.id}>
-                <Row>
-                  <Col md={4}>
-                    <Image src={item.image_path} alt={item.name_en} fluid rounded />
-                  </Col>
-                  <Col md={3}>
-                    <Link to={`/product/${item.id}`}>{i18n.language === 'en' ? item.name_en :item.name_ar}</Link>
-                  </Col>
-                  <Col md={2}>{item.price}</Col>
-             
-                  <Col md={2}>
-                  <Button
-                      type='button'
-                      variant='light'
-                      onClick={() => removeFromCartHandler(item.id)}
-                    >
-                      <FaTrash />
-                    </Button>
-                  </Col>
-                </Row>
+                <ul className="list-group list-group-flush" >
+    
+      <li key={item.id} className="list-group-item cart-item">
+        <div className="d-flex gap-2">
+          <div className="col-md-4">
+            <img src={item.image_path} alt={item.name_en} className="img-fluid rounded" />
+          </div>
+          <div className="col-md-3">
+            <Link to={`/products/${item.slug}`}>{i18n.language === 'en' ? item.name_en : item.name_ar}</Link>
+          </div>
+          <div className="col-md-2">{item.price}</div>
+          <div className="col-md-2">
+          <Button
+              type='button'
+              variant='light'
+              onClick={() => removeFromCartHandler(item.id)}
+            >
+              <FaTrash />
+            </Button>
+          </div>
+        </div>
+      </li>
+   
+  </ul>
               </ListGroup.Item>
             ))}
           </ListGroup>
@@ -144,9 +148,13 @@ setMenu(false)
                 <button className="action-btn headbutton">
                 {
                         userInfo ? (     <NavDropdown title={<FaUser size={30}/>} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                          
+                          <NavDropdown.Item>
+                          <Link to={'/profile'}>
+                            {t('account6')}  </Link></NavDropdown.Item>
+                        
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLogout}>{t('account7')}</NavDropdown.Item>
                       </NavDropdown>) : (<FaUser size={30} onClick={() => setShowModal(true)} />)
                     }
                 
@@ -231,7 +239,7 @@ setMenu(false)
                   </div>
               </nav>
             
-                {i18n.language == 'en' ? (
+                {i18n.language === 'en' ? (
         <div style={{position:'relative'}}>
         <FormControl
       type="text"

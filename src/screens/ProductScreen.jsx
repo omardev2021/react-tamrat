@@ -36,8 +36,8 @@ const ProductScreen = () => {
 
 
   const handleKiloImage= (newImagePath) => {
-    if(currentImage == size2 ) {
-      console.log('dddd')
+    if(currentImage === size2 ) {
+      
       setCurrentImage(product.product.image_path);
       setKiloImage(size2)
     }else {
@@ -49,8 +49,8 @@ const ProductScreen = () => {
 
 
   const handleHalfImage= (newImagePath) => {
-    if(currentImage == size1 ) {
-      console.log('dddd')
+    if(currentImage === size1 ) {
+   
       setCurrentImage(product.product.image_path);
       setHalfImage(size1)
     }else {
@@ -62,8 +62,7 @@ const ProductScreen = () => {
 
 
   const handleSevenImage= (newImagePath) => {
-    if(currentImage == size3 ) {
-      console.log('dddd')
+    if(currentImage === size3 ) {
       setCurrentImage(product.product.image_path);
       setSevenImage(size3)
     }else {
@@ -74,8 +73,8 @@ const ProductScreen = () => {
   };
 
   const handleOneImage= (newImagePath) => {
-    if(currentImage == size4 ) {
-      console.log('dddd')
+    if(currentImage === size4 ) {
+
       setCurrentImage(product.product.image_path);
       setOneImage(size4)
     }else {
@@ -180,7 +179,7 @@ const ProductScreen = () => {
 
 return (
   <>
-     {i18n.language == 'en' ? (
+     {i18n.language === 'en' ? (
        <>
        <Meta title={`Tamrat Dates - ${product.product.name_en}`}/>
    <div className='d-flex text-center align-items-center p-5  gap-1 ml-5'>
@@ -235,7 +234,7 @@ return (
 
       {/* Secondary images as icons with click functionality */}
         {
-          product.product.weight == 1.00 && (
+          product.product.weight === "1.00" && (
             <Image
     
             src={kiloImage}
@@ -250,7 +249,7 @@ return (
         }
 
 {
-          product.product.weight == .50 && (
+          product.product.weight === "0.50" && (
             <Image
     
             src={halfImage}
@@ -266,7 +265,7 @@ return (
 
 
 {
-          product.product.weight == .30 && (
+          product.product.weight === "0.30" && (
             <Image
     
             src={sevenImage}
@@ -282,7 +281,7 @@ return (
 
 
 {
-          product.product.weight == .10 && (
+          product.product.weight === "0.10" && (
             <Image
     
             src={oneImage}
@@ -398,7 +397,7 @@ return (
       <span>{i18n.language === 'en' ? product.origin_en :product.origin_ar}</span>
     </div>
     <Link to={`/products/${product.slug}`}>
-  <button className="btn-buy mt-4">{t('home4')}</button>
+  <button className="btn-buy mt-4 a-link">{t('home4')}</button>
 </Link>
   </Card>
 </Col>

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
-import { FaCircle , FaCheck } from 'react-icons/fa';
-import { FaCircleCheck } from 'react-icons/fa';
+import { Form, Col } from 'react-bootstrap';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
@@ -11,6 +9,7 @@ import { savePaymentMethod } from '../slices/cartSlice';
 import paymento from '../assets/paymento.png';
 import transfer from '../assets/transfer.png';
 import { useTranslation } from 'react-i18next';
+import Meta from '../components/Meta';
 
 
 const PaymentScreen = () => {
@@ -42,6 +41,16 @@ const submitHandler = (e) => {
     
 
   return (
+    <>
+       {
+      i18n.language === 'en' ? (
+        
+        <Meta title={'Tamrat Dates - Payment Method Information'} />
+      ) : (
+        <Meta title={'تمرات - معلومات وسيلة الدفع'} />
+      )
+    }
+    
     <FormContainer>
       <CheckoutSteps step1 step2  />
       <h1>{t('payment1')}</h1>
@@ -133,6 +142,7 @@ const submitHandler = (e) => {
                 </button>
       </Form>
     </FormContainer>
+    </>
   );
 };
 

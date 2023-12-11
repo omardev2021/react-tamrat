@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useGetShoppingProductsQuery } from '../slices/productsApiSlice';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
@@ -15,63 +15,42 @@ function ShoppingScreen() {
   const { t , i18n } = useTranslation();
 
   const { data, isLoading, error } = useGetShoppingProductsQuery();
-  console.log(data);
+
 
   if(isLoading) {
     return(
     <div>
- 
+ <div className='d-flex text-center align-items-center p-5 pb-0 gap-1 ml-5'>
+ <Skeleton width={150} /> 
+ </div>
   
     <h1 className="title">
        <Skeleton width={150} /> 
     </h1>
-    <Container>
+    
       <Row className="py-5">
-    
-    
-            <Col sm={4} className='mb-5'>
-              <Card className="text-center">
-                <div className="card-img">
-                  <Skeleton height={200} />
-                </div>
-                <div className="card-body">
-                  <Skeleton height={20} width={120} />
-                  <br />
-                  <Skeleton height={20} width={120} />
-                </div>
-                <Skeleton height={40} width={120} />
-              </Card>
-            </Col>
-            <Col sm={4} className='mb-5'>
-              <Card className="text-center">
-                <div className="card-img">
-                  <Skeleton height={200} />
-                </div>
-                <div className="card-body">
-                  <Skeleton height={20} width={120} />
-                  <br />
-                  <Skeleton height={20} width={120} />
-                </div>
-                <Skeleton height={40} width={120} />
-              </Card>
-            </Col>
-            <Col sm={4} className='mb-5'>
-              <Card className="text-center">
-                <div className="card-img">
-                  <Skeleton height={200} />
-                </div>
-                <div className="card-body">
-                  <Skeleton height={20} width={120} />
-                  <br />
-                  <Skeleton height={20} width={120} />
-                </div>
-                <Skeleton height={40} width={120} />
-              </Card>
-            </Col>
-        
+
+      <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
+              <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
+              <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
+              <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
+              <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
+              <Col sm={4} className="mb-2">
+                <Skeleton height={250} width={350} />
+              </Col>
       
       </Row>
-    </Container>
+    
   </div>
     )
   }
@@ -79,7 +58,7 @@ function ShoppingScreen() {
   return (
     <div>
      
-       {i18n.language == 'en' ? (
+       {i18n.language === 'en' ? (
          <>
            <Meta title={'Tamrat Dates - High Quality Dates'}/>
        
@@ -128,7 +107,7 @@ function ShoppingScreen() {
                   <span>{i18n.language === 'en' ? product.origin_en :product.origin_ar}</span>
                 </div>
                 <Link to={`/products/${product.slug}`}>
-              <button className="btn-buy mt-4">{t('home4')}</button>
+              <button className="btn-buy mt-4 a-link">{t('home4')}</button>
             </Link>
               </Card>
             </Col>

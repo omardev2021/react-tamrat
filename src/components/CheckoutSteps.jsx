@@ -4,14 +4,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
-  const { t ,i18n} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Nav className='justify-content-center mb-4'>
       <Nav.Item>
         {step1 ? (
             
-          <LinkContainer to='/login'>
+          <LinkContainer to='/'>
               
             <Nav.Link>
             <div className="order-tracking completed m-auto">

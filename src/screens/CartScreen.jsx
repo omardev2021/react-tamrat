@@ -15,6 +15,7 @@ import { addToCart, removeFromCart } from '../slices/cartSlice';
 import { useTranslation } from 'react-i18next';
 import AuthModal from '../components/AuthModal';
 import { useState } from 'react';
+import Meta from '../components/Meta';
 
 const CartScreen = () => {
   const navigate = useNavigate();
@@ -42,6 +43,14 @@ const CartScreen = () => {
   };
 
   return (
+    <>
+    {
+      i18n.language === 'en' ? (
+        <Meta title={'Tamrat Dates - Cart Page'} />
+      ) : (
+        <Meta title={'تمرات - صفحة السلة'} />
+      )
+    }
     <Row className='p-5'>
       <Col md={8}>
         <h1 style={{ marginBottom: '20px' }}>{t('cart1')}</h1>
@@ -138,6 +147,7 @@ const CartScreen = () => {
         </Card>
       </Col>
     </Row>
+    </>
   );
 };
 

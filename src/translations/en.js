@@ -232,7 +232,15 @@ const enTranslations = {
   registeration3:'Phone (without 0 at begining)',
   registeration4:'Register',
   registeration5:'Already have an account ?',
-  sim:'Related Products'
+  sim:'Related Products',
+
+  account1:'User Profile',
+  account2:'Name',
+  account3:'Email',
+  account4:'Phone',
+  account5:'My Orders',
+  account6:'profile',
+  account7:'logout',
 };
 
 export default enTranslations;

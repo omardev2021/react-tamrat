@@ -6,7 +6,13 @@
   padding: 0;
   font-family: 'Noto Kufi Arabic', 'Poppins';
 }
+.cart-item {
+  display: flex;
+}
 
+.a-link {
+  color: black;
+}
 footer
 html, body {
   margin: 0;
@@ -34,7 +40,10 @@ html, body {
   vertical-align: middle;
 }
 
-
+.offScroll {
+  max-height:80vh;
+  overflow-y: auto;
+}
 .mi {
   margin: 0;
   padding: 0;
@@ -104,7 +113,7 @@ html, body {
 }
 .section-three .btn-btn{
   border: 2px solid #7C9D64;
-  margin-top: 110px;
+  
 }
 
 .btn-shop{
@@ -1147,6 +1156,10 @@ section {
   }
   .header-img {
       height: 340px;
+  }
+  .offScroll {
+    max-height:100vh;
+    overflow-y: auto;
   }
 }
 

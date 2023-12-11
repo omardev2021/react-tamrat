@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { faPlus, faMinus, faTimes, faCaretBack ,faX} from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus ,faX} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
-import {Link} from 'react-router-dom'
-import cancel from '../assets/cancel-n.png'
+import { Link, useNavigate } from 'react-router-dom';
+
 import { useSelector , useDispatch} from 'react-redux';
 import { logout } from '../slices/authSlice';
 
 const MobileNavigationMenu = ({closeMenu}) => {
     const { userInfo } = useSelector((state) => state.auth);
     const { t , i18n} = useTranslation();
+    const navigate = useNavigate();
 
   const [isDatesAccordionOpen, setDatesAccordionOpen] = useState(false);
 
@@ -28,6 +29,7 @@ const MobileNavigationMenu = ({closeMenu}) => {
 
   const dispatch = useDispatch();
     const handleLogout = () => {
+        navigate('/');
         dispatch(logout());
 
     }
@@ -100,10 +102,10 @@ const MobileNavigationMenu = ({closeMenu}) => {
                 </button>
                 <ul className="submenu-category-list" data-accordion>
                     <li className="submenu-category" onClick={changeEn}>
-                        <a   className="submenu-title">English</a>
+                        <Link  to={'#'} className="submenu-title">English</Link>
                     </li>
                     <li className="submenu-category">
-                        <a className="submenu-title" onClick={changeAr}>العربية</a>
+                    <Link  to={'#'}  className="submenu-title" onClick={changeAr}>العربية</Link>
                     </li>
                 </ul>
             </li>

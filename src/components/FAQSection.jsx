@@ -1,11 +1,11 @@
 import Accordion from 'react-bootstrap/Accordion';
 
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+
 import { useTranslation } from 'react-i18next';
 
 const FAQSection = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="accordion row ">

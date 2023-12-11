@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Table, Form, Button, Row, Col, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
-import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { useProfileMutation } from '../slices/usersApiSlice';
-import { setCredentials } from '../slices/authSlice';
+
 import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
 import {FaTimes , FaCheck} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import Meta from '../components/Meta';
 
 const ProfileScreen = () => {
     // const [name, setName] = useState('');
     // const [email, setEmail] = useState('');
     // const [phone, setPhone] = useState('');
+    const { t , i18n } = useTranslation();
+
     const navigate = useNavigate();
   
     const { userInfo } = useSelector((state) => state.auth);
@@ -29,7 +31,7 @@ const ProfileScreen = () => {
       // setName(userInfo.name);
       // setEmail(userInfo.email);
       // setPhone(userInfo.phone);
-    }, [userInfo]);
+    }, [userInfo,navigate]);
   
     const submitHandler = async (e) => {
       e.preventDefault();
@@ -38,13 +40,18 @@ const ProfileScreen = () => {
   
     return (
       <Container>
+        {i18n.language === 'en' ? (
+          <Meta title={'Tamrat Dates - Account Page'} />
+        ) : (
+<Meta title={'تمرات - صفحة الحساب'} />
+        )}
       <Row>
         <Col md={3}>
-          <h2>User Profile</h2>
+          <h2>{t('account1')}</h2>
   
           <Form onSubmit={submitHandler}>
             <Form.Group className='my-2' controlId='name'>
-              <Form.Label>Name</Form.Label>
+              <Form.Label>{t('account2')}</Form.Label>
               <Form.Control
                 type='name'
                 placeholder='Enter name'
@@ -55,7 +62,7 @@ const ProfileScreen = () => {
             </Form.Group>
   
             <Form.Group className='my-2' controlId='email'>
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label>{t('account3')}</Form.Label>
               <Form.Control
                 type='email'
                 placeholder='Enter email'
@@ -65,7 +72,7 @@ const ProfileScreen = () => {
             </Form.Group>
 
             <Form.Group className='my-2' controlId='name'>
-              <Form.Label>Phone</Form.Label>
+              <Form.Label>{t('account4')}</Form.Label>
               <Form.Control
                 type='name'
                 placeholder='Enter phone'
@@ -85,9 +92,9 @@ const ProfileScreen = () => {
           </Form>
         </Col>
         <Col md={9}>
-  <h2>My Orders</h2>
+  <h2>{t('account5')}</h2>
   {isLoading ? (
-    <div>Loading...</div>
+    <Loader />
   ) : error ? (
     <div>
       {error?.data?.message || error.error}
@@ -113,14 +120,14 @@ const ProfileScreen = () => {
             <td>{order.created_at}</td>
             <td>{order.totalPrice}</td>
             <td>
-              {order.isPaid == 1 ? (
+              {order.isPaid === 1 ? (
                 <FaCheck style={{ color: 'green' }} />
               ) : (
                  <FaTimes style={{ color: 'red' }} />
               )}
             </td>
             <td>
-              {order.isDelivered == 1 ? (
+              {order.isDelivered === 1 ? (
                 <FaCheck style={{ color: 'green' }} />
                 ) : (
                   <FaTimes style={{ color: 'red' }} />
