@@ -37,7 +37,13 @@ function Product({ product }) {
   const addToCartFirst = () => {
     
     dispatch(addToCart({ ...product, qty }));
-    toast.success('Product Added To Your Cart!');
+    if(i18n.language === 'en') {
+      toast.success('The product has been added to the cart!');
+
+    } else {
+      toast.success('!تمت اضافة المنتج الى السلة');
+
+    }
     
   };
 
@@ -84,14 +90,29 @@ function Product({ product }) {
             <h4>{product.price} {t('sar')}</h4>
             <h4 hidden>{product.price}</h4>
             <div className="d-flex m-auto align-middle my-3">
-              <div className="count-qick mt-2 mr-3 mx-3">
-                <FaMinus  onClick={minus}/>
+              <div className="count-qick mt-2 mr-3 mx-3 d-flex align-items-center">
+                {i18n.language === 'en' ? (
+<>
+<FaMinus  onClick={minus}/>
 
-                <span className="m-1">
-                  <input type="text" value={qty} disabled />
-                </span>
-             
-                <FaPlus onClick={incrementValue}/>
+                
+<input type="text"  value={qty} disabled />
+
+
+<FaPlus onClick={incrementValue}/>
+</>
+                ):(
+<>
+
+
+<FaPlus onClick={incrementValue}/>            
+<input type="text"  value={qty} disabled />
+<FaMinus  onClick={minus}/>
+
+
+</>
+                )}
+              
               </div>
               <button className="btn-qickshop" onClick={() => addToCartFirst(product.id)}>
               {t('home5')}

@@ -100,16 +100,16 @@ const ProfileScreen = () => {
       {error?.data?.message || error.error}
     </div>
   ) : orders.length === 0 ? (
-   <Message variant={'info'}>There is no orders yet.</Message>
+   <Message variant={'info'}>{t('noOrders')}</Message>
   ) : (
     <Table striped table hover responsive className='table-sm'>
       <thead>
         <tr>
           <th>ID</th>
-          <th>DATE</th>
-          <th>TOTAL</th>
-          <th>PAID</th>
-          <th>DELIVERED</th>
+          <th>{t('pr1')}</th>
+          <th>{t('pr2')}</th>
+          <th>{t('pr3')}</th>
+          <th>{t('pr4')}</th>
           <th></th>
         </tr>
       </thead>
@@ -117,7 +117,9 @@ const ProfileScreen = () => {
         {orders.map((order) => (
           <tr key={order.id}>
             <td>{order.id}</td>
-            <td>{order.created_at}</td>
+            
+            <td>{order.created_at ? order.created_at.substring(0, 10) : ''}</td>
+
             <td>{order.totalPrice}</td>
             <td>
               {order.isPaid === 1 ? (
@@ -136,7 +138,7 @@ const ProfileScreen = () => {
             <td>
               <LinkContainer to={`/orders/${order.id}`}>
                 <Button className='btn-sm' variant='light'>
-                  Details
+                {t('pr5')}
                 </Button>
               </LinkContainer>
             </td>

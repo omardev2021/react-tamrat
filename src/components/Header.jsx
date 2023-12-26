@@ -22,6 +22,7 @@ import shipped from '../assets/shipped.png'
 import cancel from '../assets/cancel-n.png'
 import MobileNavigationMenu from './MobileNavigationMenu';
 import { removeFromCart } from '../slices/cartSlice';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 const Header = () => {
@@ -155,8 +156,19 @@ setMenu(false)
                         
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={handleLogout}>{t('account7')}</NavDropdown.Item>
+                        {
+  userInfo && userInfo.user.type === 13 && (
+ 
+      <LinkContainer to='/admin/orderlist'>
+        <NavDropdown.Item>Admin</NavDropdown.Item>
+      </LinkContainer>
+
+  )
+}
                       </NavDropdown>) : (<FaUser size={30} onClick={() => setShowModal(true)} />)
                     }
+
+
                 
                 </button>
                         <button className="action-btn headbutton" onClick={handleShow}>

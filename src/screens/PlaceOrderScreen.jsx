@@ -86,6 +86,7 @@ const PlaceOrderScreen = () => {
         shippingPrice: cart.shippingPrice,
         totalPrice: cart.totalPrice,
         weight:'22.00',
+        discount:cart.discount
       }).unwrap();
 
       dispatch(clearCartItems());

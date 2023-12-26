@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetCountriesQuery } from '../slices/productsApiSlice';
 import { useEffect } from 'react';
 import Meta from '../components/Meta';
+import Loader from '../components/Loader';
 
 
 
@@ -54,7 +55,12 @@ const ShippingScreen = () => {
       navigate('/');
     }
   }, [navigate, userInfo]);
-  
+
+  if(isLoading) {
+    return (
+      <Loader />
+    )
+    }
 
   return (
     <>

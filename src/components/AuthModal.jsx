@@ -223,6 +223,34 @@ const AuthModal = ({show,handleClose}) => {
       }
   };
 
+  const handleChangePhone = (e) => {
+    let inputValue = e.target.value;
+
+    // Check if the input starts with '0'
+    if (inputValue.startsWith('0')) {
+      // Remove the leading '0'
+      inputValue = inputValue.slice(1);
+    }
+
+    // Update the phoneNumber state
+    setPhoneNumber(inputValue);
+  };
+
+
+  const handleChangePhone2 = (e) => {
+    let inputValue = e.target.value;
+
+    // Check if the input starts with '0'
+    if (inputValue.startsWith('0')) {
+      // Remove the leading '0'
+      inputValue = inputValue.slice(1);
+    }
+
+    // Update the phoneNumber state
+    setPhoneNumber2(inputValue);
+  };
+
+
   return (
       <>
       {show && (
@@ -289,8 +317,10 @@ const AuthModal = ({show,handleClose}) => {
                         <form onSubmit={submitSMSForm}>
                           <h5 className="py-3 text-center">{t('login')} </h5>
                           <div className="mb-3">
-                            <input type="text" name="phoneNumber" className="form-control" placeholder={t('enterPhone')}  value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                          </div>
+                          <div className="input-group" dir='ltr'>
+        <span className="input-group-text" style={{ borderTopLeftRadius: '0',borderBottomLeftRadius: '0'}}>+966</span>
+        <input type="text" name="phoneNumber" className="form-control" placeholder={t('enterPhone')}  value={phoneNumber} onChange={handleChangePhone}  style={{ borderTopRightRadius: '0',borderBottomRightRadius: '0',}} />
+      </div>                          </div>
                           <div className='text-center'>
                     
                           {loadingSms ? (
@@ -313,7 +343,18 @@ const AuthModal = ({show,handleClose}) => {
                           <div className="mb-3">
                             <input type="text" name="name" className="form-control" placeholder={t('registeration1')} value={name} onChange={(e) => setName(e.target.value)} />
                             <input type="email" name="email" className="form-control" placeholder={t('registeration2')} value={email2} onChange={(e) => setEmail2(e.target.value)} />
-                            <input type="text" name="phoneNumber" className="form-control" placeholder={t('registeration3')} value={phoneNumber2} onChange={(e) => setPhoneNumber2(e.target.value)} />
+                            
+
+                          <div className="input-group" dir='ltr'>
+        <span className="input-group-text" style={{ borderTopLeftRadius: '0',borderBottomLeftRadius: '0'}}>+966</span>
+
+
+        <input type="text" name="phoneNumber" className="form-control" placeholder={t('registeration3')} value={phoneNumber2} onChange={handleChangePhone2} style={{ borderTopRightRadius: '0',borderBottomRightRadius: '0',}}/>
+
+      </div>  
+
+
+
                           </div>
                           <div className='text-center'>
                             {loadingRegister ? (

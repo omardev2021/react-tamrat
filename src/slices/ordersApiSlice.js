@@ -72,7 +72,33 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
        
         keepUnusedDataFor: 5,
       }),
+
+      getOrders: builder.query({
+        query: () => ({
+          url: ORDERS_URL,
+        }),
+        keepUnusedDataFor: 5,
+      }),
+
+      getReceipts: builder.query({
+        query: () => ({
+          url: `${ORDERS_URL}/admin/receipts`,
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getContacts: builder.query({
+        query: () => ({
+          url: `${ORDERS_URL}/admin/contacts`,
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getLetters: builder.query({
+        query: () => ({
+          url: `${ORDERS_URL}/admin/newsletters`,
+        }),
+        keepUnusedDataFor: 5,
+      }),
   }),
 });
 
-export const { useCreateOrderMutation,useConfirmOrderMutation ,usePayOrderMutation ,useUploadOrderMutation, useGetOrderDetailsQuery,useGetMyOrdersQuery,} = ordersApiSlice;
+export const {useGetContactsQuery,useGetLettersQuery,useGetReceiptsQuery,useGetOrdersQuery, useCreateOrderMutation,useConfirmOrderMutation ,usePayOrderMutation ,useUploadOrderMutation, useGetOrderDetailsQuery,useGetMyOrdersQuery,} = ordersApiSlice;

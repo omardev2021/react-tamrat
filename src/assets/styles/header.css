@@ -430,7 +430,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 .accordion-menu .remove-icon { display: none; }
 
 .accordion-menu .add-icon,
-.accordion-menu.active .remove-icon { display: block; }
+.accordion-menu.active .remove-icon { display: block; color: black; }
 
 .menu-category .submenu-category-list { margin-left: 10px; }
 

@@ -503,10 +503,11 @@ span.m-1 {
   font-weight: bold;
   font-size: 17px;
   cursor: pointer;
+  
 }
 
 .count-qick input {
-  padding: 2px;
+  padding: 5px;
   border: 0;
   outline: none;
   width: 24px;
@@ -1316,3 +1317,53 @@ section {
             color: #Fff;
             
         }
+
+        /* Add your own custom styles for arrows and dots */
+        .my-swiper .swiper-button-next,
+        .my-swiper .swiper-button-prev {
+          background-color: black; /* Circle background color */
+          color: #fff; /* Arrow color */
+          border-radius: 50%; /* Make it circular */
+          width: 40px; /* Adjust width as needed */
+          height: 40px; /* Adjust height as needed */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .my-swiper .swiper-button-next::after,
+        .my-swiper .swiper-button-prev::after {
+          font-size: 20px; /* Adjust arrow size */
+        }
+        
+        .my-swiper .swiper-pagination-bullet {
+          background-color: black; /* Dot color */
+          width: 12px; /* Adjust width as needed */
+          height: 12px; /* Adjust height as needed */
+          border-radius: 50%; /* Make it circular */
+          margin: 0 8px; /* Adjust spacing between dots */
+        }
+
+
+/* Add to your existing CSS or create a new stylesheet */
+.availability {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  font-size: 14px; 
+  width: 100%;/* Adjust font size */
+}
+
+.in-stock {
+  background-color: #e4faef; /* Darker green background color */
+  color: black; /* White text color */
+}
+
+.out-of-stock {
+  background-color: #f4433671; /* Darker red background color */
+  color: black; /* White text color */
+}
+
+.availability span {
+  margin-left: 8px;
+}

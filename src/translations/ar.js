@@ -49,7 +49,7 @@ const arTranslations = {
     price:'السعر: ',
 
     status:'الحالة',
-    in:'متوفر',
+    in:'متوفر في المخزون',
     out:'نفذت الكمية',
     qty:'الكمية',
     add:'إضافة الى السلة',
@@ -101,7 +101,7 @@ const arTranslations = {
     auth3:'تسجيل الدخول عبر الايميل',
     login:'تسجيل الدخول',
     register:'التسجيل',
-    enterPhone:'ادخل رقم الجوال بدون ٠ في البداية',
+    enterPhone:'ادخل رقم الجوال',
     enterEmail:'ادخل الايميل',
     continue:'المتابعة',
     new:'إنشاء حساب جديد',
@@ -227,7 +227,7 @@ const arTranslations = {
 
   registeration1:'الاسم',
   registeration2:'البريد الالكتروني',
-  registeration3:'رقم الجوال (بدون 0 في البداية)',
+  registeration3:'ادخل رقم الجوال',
   registeration4:'التسجيل',
   registeration5:'هل لديك حساب بالفعل ؟',
 
@@ -240,6 +240,16 @@ const arTranslations = {
 
   account6:'الحساب',
   account7:'تسجيل خروج',
+
+  download:'تحميل الفاتورة',
+  paidDone:'عملية الدفع تمت بنجاح',
+  delDone:'تم التوصيل',
+  pr1:'التاريخ',
+  pr2:'المجموع',
+  pr3:'حالة الدفع',
+  pr4:'حالة الشحن',
+  pr5:'التفاصيل',
+  noOrders:'ليس لديك طلبات بعد'
   };
   
   export default arTranslations;

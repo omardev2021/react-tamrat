@@ -10,7 +10,7 @@ const Blog = () => {
 
   return (
     <div className='mi' dir='rtl'>
-         {i18n.language == 'en' ? (
+         {i18n.language === 'en' ? (
 <Meta title={'Tamrat Dates - Tamrat Blog'}/>
          ) : (
 <Meta title={'تمرات - مدونة تمرات'}/>
@@ -75,12 +75,12 @@ const Blog = () => {
          
         </div>
       </section>
-
+{/* 
       <div className="notfecation text-center">
         <h3 className="mb-3">Subscribe to the newsletter</h3>
         <input className="form-control w-25" type="email" name="" id="" placeholder="E-mail" />
         <button>Subscribe</button>
-      </div>
+      </div> */}
     </div>
   );
 };

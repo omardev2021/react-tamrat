@@ -14,10 +14,19 @@ import size2 from '../assets/size2.png';
 import size3 from '../assets/size3.png';
 import size4 from '../assets/size4.png';
 import { useTranslation } from 'react-i18next';
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight ,FaCartPlus,FaCheck , FaCheckCircle, FaTimes, FaTimesCircle} from "react-icons/fa";
 import Skeleton from 'react-loading-skeleton';
 import Meta from '../components/Meta';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 const ProductScreen = () => {
   const { slug: productId } = useParams();
@@ -25,64 +34,10 @@ const ProductScreen = () => {
   const { t , i18n } = useTranslation();
 
   const [qty, setQty] = useState(1); // <-- add this
-
-  const [currentImage, setCurrentImage] = useState('');
   
 
-  const [kiloImage, setKiloImage] = useState(size2);
-  const [halfImage, setHalfImage] = useState(size1);
-  const [sevenImage, setSevenImage] = useState(size3);
-  const [oneImage, setOneImage] = useState(size4);
 
 
-  const handleKiloImage= (newImagePath) => {
-    if(currentImage === size2 ) {
-      
-      setCurrentImage(product.product.image_path);
-      setKiloImage(size2)
-    }else {
-      setCurrentImage(newImagePath);
-      setKiloImage(product.product.image_path)
-    }
-    
-  };
-
-
-  const handleHalfImage= (newImagePath) => {
-    if(currentImage === size1 ) {
-   
-      setCurrentImage(product.product.image_path);
-      setHalfImage(size1)
-    }else {
-      setCurrentImage(newImagePath);
-      setHalfImage(product.product.image_path)
-    }
-    
-  };
-
-
-  const handleSevenImage= (newImagePath) => {
-    if(currentImage === size3 ) {
-      setCurrentImage(product.product.image_path);
-      setSevenImage(size3)
-    }else {
-      setCurrentImage(newImagePath);
-      setSevenImage(product.product.image_path)
-    }
-    
-  };
-
-  const handleOneImage= (newImagePath) => {
-    if(currentImage === size4 ) {
-
-      setCurrentImage(product.product.image_path);
-      setOneImage(size4)
-    }else {
-      setCurrentImage(newImagePath);
-      setOneImage(product.product.image_path)
-    }
-    
-  };
 
 
 
@@ -105,11 +60,11 @@ const ProductScreen = () => {
           <Col md={6}>
             <Skeleton height={300} width={400} />
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <Skeleton height={20} width={100} />
-                <Skeleton height={30} width={250} />
+                <Skeleton height={20} width={200} />
+          
               </ListGroup.Item>
               <ListGroup.Item>
                 <Skeleton height={20} width={250} />
@@ -118,29 +73,15 @@ const ProductScreen = () => {
                 <Skeleton height={20} width={200} />
               </ListGroup.Item>
               <ListGroup.Item>
-                <Skeleton height={120} />
+                <Skeleton height={120} width={600}/>
               </ListGroup.Item>
+              <ListGroup.Item>
+                <Skeleton height={80} width={600}/>
+              </ListGroup.Item>
+              
             </ListGroup>
           </Col>
-          <Col md={3}>
-            <Card>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <Skeleton height={20} width={100} />
-                  <Skeleton height={30} width={250} />
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Skeleton height={20} width={200} />
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Skeleton height={20} width={150} />
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Skeleton height={40} width={150} />
-                </ListGroup.Item>
-              </ListGroup>
-            </Card>
-          </Col>
+         
         </Row>
         <Row className='mt-5'>
           <h1 className="title">
@@ -173,7 +114,13 @@ const ProductScreen = () => {
     // add this
     const addToCartHandler = () => {
       dispatch(addToCart({ ...product.product, qty }));
-      toast.success('Product Added To Your Cart!');
+      if(i18n.language === 'en') {
+        toast.success('The product has been added to the cart!');
+
+      } else {
+        toast.success('!تمت اضافة المنتج الى السلة');
+
+      }
       // navigate('/cart');
     };
 
@@ -229,20 +176,36 @@ return (
         <Row>
         <Col md={6}>
       {/* Main image */}
-      <Image src={currentImage || product.product.image_path} alt={product.product.name_en} fluid />
+           {/* Image Slider */}
+           <Swiper
+                 modules={[Navigation, Pagination, Scrollbar, A11y]}
 
+              spaceBetween={10}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              loop={true}
+              className="my-swiper"
+            >
+              {/* Main Image */}
+              <SwiperSlide>
+                <Image
+                  src={product.product.image_path}
+                  alt={product.product.name_en}
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </SwiperSlide>
 
-      {/* Secondary images as icons with click functionality */}
-        {
+              {/* Additional Images */}
+              <SwiperSlide>
+              
+
+{
           product.product.weight === "1.00" && (
             <Image
-    
-            src={kiloImage}
-            className='mt-2'
-            width={200}
-            alt={product.product.name_en}
-            fluid
-            onClick={() => handleKiloImage(size2)}
+            src={size2}
+            alt="Image 2"
+            style={{ width: '100%', height: 'auto' }}
           />
      
           ) 
@@ -251,54 +214,51 @@ return (
 {
           product.product.weight === "0.50" && (
             <Image
-    
-            src={halfImage}
-            className='mt-2'
-            width={200}
-            alt={product.product.name_en}
-            fluid
-            onClick={() => handleHalfImage(size1)}
+            src={size1}
+            alt="Image 2"
+            style={{ width: '100%', height: 'auto' }}
           />
      
           ) 
         }
-
 
 {
           product.product.weight === "0.30" && (
             <Image
-    
-            src={sevenImage}
-            className='mt-2'
-            width={200}
-            alt={product.product.name_en}
-            fluid
-            onClick={() => handleSevenImage(size3)}
+            src={size3}
+            alt="Image 2"
+            style={{ width: '100%', height: 'auto' }}
           />
      
           ) 
         }
-
 
 {
           product.product.weight === "0.10" && (
             <Image
-    
-            src={oneImage}
-            className='mt-2'
-            width={200}
-            alt={product.product.name_en}
-            fluid
-            onClick={() => handleOneImage(size4)}
+            src={size4}
+            alt="Image 2"
+            style={{ width: '100%', height: 'auto' }}
           />
      
           ) 
         }
 
+
+
+
+
+
+              </SwiperSlide>
+              {/* Add more images as needed */}
+            </Swiper>
+
+     
+
         
       
     </Col>
-          <Col md={3}>
+          <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
               <Rating
@@ -312,32 +272,25 @@ return (
               </ListGroup.Item>
               <ListGroup.Item>{t('price')} {product.product.price} {t('sar')}</ListGroup.Item>
               <ListGroup.Item>
-                {i18n.language === 'en' ? product.product.description_en :product.product.description_ar}
+                {/* Product Availability Status with Font Awesome Icons */}
+                {product.product.countInStock > 0 ? (
+                  <div className="availability in-stock">
+                    <FaCheckCircle color='green' className='mx-1' size={20}/>
+                    <span>{t('in')}</span>
+                  </div>
+                ) : (
+                  <div className="availability out-of-stock">
+                    <FaTimesCircle color='red' className='mx-1' size={20}/>
+                    <span>{t('out')}</span>
+                  </div>
+                )}
               </ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col md={3}>
-            <Card>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>{t('price')}</Col>
-                    <Col>
-                      <strong>{product.product.price} {t('sar')}</strong>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>{t('status')}</Col>
-                    <Col>
-                      {product.product.countInStock > 0 ? t('in') : t('out')}
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                {product.product.countInStock > 0 && (
-                    <ListGroup.Item>
-                      <Row>
+              <ListGroup.Item>
+                {i18n.language === 'en' ? product.product.description_en :product.product.description_ar}
+            
+              </ListGroup.Item>
+              <ListGroup.Item>
+                      <Row className='align-items-center'>
                         <Col>{t('qty')}</Col>
                         <Col>
                           <Form.Control
@@ -357,21 +310,21 @@ return (
                         </Col>
                       </Row>
                     </ListGroup.Item>
-                  )}
-                <ListGroup.Item>
-                  <button
+              <div>
+                <button
                   id="check"
                     className='btn btn-buy w-100'
                     type='button'
                     disabled={product.product.countInStock === 0}
                     onClick={addToCartHandler}
                   >
+                    <FaCartPlus className='mx-2' size={24}/>
                     {t('add')}
                   </button>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card>
+              </div>
+            </ListGroup>
           </Col>
+          
         </Row>
         <Row className='mt-5'>
         <h1 className="title">

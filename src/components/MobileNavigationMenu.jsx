@@ -48,7 +48,7 @@ const MobileNavigationMenu = ({closeMenu}) => {
     </div>
     <ul className="mobile-menu-category-list">
         <li className="menu-category">
-            <Link to="/" className="menu-title"> {t('header1')}</Link>
+            <Link to="/" className="menu-title" onClick={closeMenu}> {t('header1')}</Link>
         </li>
         <li className="menu-category">
         <button className="accordion-menu headbutton" onClick={() => toggleDatesAccordion()}>
@@ -61,22 +61,22 @@ const MobileNavigationMenu = ({closeMenu}) => {
         {isDatesAccordionOpen && (
             <ul className="submenu-category-list" >
                 <li className="submenu-category">
-                    <Link to="/ajwa-date" className="submenu-title">{t('header3')}</Link>
+                    <Link to="/ajwa-date" className="submenu-title" onClick={closeMenu}>{t('header3')}</Link>
                 </li>
                 <li className="submenu-category">
-                    <Link to="/sukari-date" className="submenu-title">{t('header4')}</Link>
+                    <Link to="/sukari-date" className="submenu-title" onClick={closeMenu}>{t('header4')}</Link>
                 </li>
                 <li className="submenu-category">
-                    <Link to="/majhool-date" className="submenu-title">{t('header5')}</Link>
+                    <Link to="/majhool-date" className="submenu-title" onClick={closeMenu}>{t('header5')}</Link>
                 </li>
                 <li className="submenu-category">
-                    <Link to="/mabroom-date" className="submenu-title">{t('header6')}</Link>
+                    <Link to="/mabroom-date" className="submenu-title" onClick={closeMenu}>{t('header6')}</Link>
                 </li>
                 <li className="submenu-category">
-                    <Link to="/sagie-date" className="submenu-title">{t('header7')}</Link>
+                    <Link to="/sagie-date" className="submenu-title" onClick={closeMenu}>{t('header7')}</Link>
                 </li>
                 <li className="submenu-category">
-                    <Link to="/shopping" className="submenu-title">{t('header24')}</Link>
+                    <Link to="/shopping" className="submenu-title" onClick={closeMenu}>{t('header24')}</Link>
                 </li>
             </ul>
         )}
@@ -84,13 +84,13 @@ const MobileNavigationMenu = ({closeMenu}) => {
         </li>
        
         <li className="menu-category">
-            <Link to={'/date-packages'} className="menu-title">{t('header8')}</Link>
+            <Link to={'/date-packages'} className="menu-title" onClick={closeMenu}>{t('header8')}</Link>
         </li>
         <li className="menu-category">
-            <Link to={'/blog'} className="menu-title"> {t('header9')}</Link>
+            <Link to={'/blog'} className="menu-title" onClick={closeMenu}> {t('header9')}</Link>
         </li>
         <li className="menu-category">
-            <Link to={'/contact-us'} className="menu-title">{t('header10')}</Link>
+            <Link to={'/contact-us'} className="menu-title" onClick={closeMenu}>{t('header10')}</Link>
         </li>
     </ul>
     <div className="menu-bottom">
@@ -102,10 +102,10 @@ const MobileNavigationMenu = ({closeMenu}) => {
                 </button>
                 <ul className="submenu-category-list" data-accordion>
                     <li className="submenu-category" onClick={changeEn}>
-                        <Link  to={'#'} className="submenu-title">English</Link>
+                        <Link  to={'#'} className="submenu-title" onClick={closeMenu}>English</Link>
                     </li>
-                    <li className="submenu-category">
-                    <Link  to={'#'}  className="submenu-title" onClick={changeAr}>العربية</Link>
+                    <li className="submenu-category" onClick={changeAr}>
+                    <Link  to={'#'}  className="submenu-title" onClick={closeMenu}>العربية</Link>
                     </li>
                 </ul>
             </li>

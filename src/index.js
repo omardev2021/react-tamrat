@@ -16,7 +16,6 @@ import CartScreen from './screens/CartScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import LoginScreen from './screens/LoginScreen';
 import ShoppingScreen from './screens/ShoppingScreen';
 
 import AjwaDates from './screens/categories/AjwaDates';
@@ -32,6 +31,7 @@ import reportWebVitals from './reportWebVitals';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/bootstrap.custom.css';
 import './assets/styles/header.css';
+
 import OrderScreen from './screens/OrderScreen';
 import i18n from './i18n';
 import SizesScreen from './screens/SizesScreen';
@@ -47,9 +47,13 @@ import Dates from './screens/blog/Dates';
 import Why from './screens/blog/Why';
 import FaqScreen from './screens/FaqScreen';
 import SearchScreen from './screens/SearchScreen';
+import AdminRoute from './components/AdminRoute';
+import OrderListScreen from './screens/admin/OrderListScreen';
+import ReceiptsScreen from './screens/admin/ReceiptsScreen';
+import NewslettersScreen from './screens/admin/NewslettersScreen';
+import ContactsScreen from './screens/admin/ContactsScreen';
 
 
-const language = i18n.language || 'ar'; // Default to Arabic if language is not set
 
 
 const router = createBrowserRouter(
@@ -84,6 +88,16 @@ const router = createBrowserRouter(
       <Route path='/frequently-asked-questions' element={<FaqScreen />} />
 
       <Route path='/shopping/products/search' element={<SearchScreen />} />
+
+      <Route path='' element={<AdminRoute />}>
+  <Route path='/admin/orderlist' element={<OrderListScreen />} />
+  <Route path='/admin/contacts' element={<ContactsScreen />} />
+
+  <Route path='/admin/newsletters' element={<NewslettersScreen />} />
+
+  <Route path='/admin/receipts' element={<ReceiptsScreen />} />
+
+</Route>
 
     </Route>
   )

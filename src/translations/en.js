@@ -49,7 +49,7 @@ const enTranslations = {
     price:'price: ',
     status:'Status',
     in:'In stock',
-    out:'Out of stoch',
+    out:'Out of stock',
 
     qty:'Quantity',
     add:'Add to cart',
@@ -100,7 +100,7 @@ const enTranslations = {
     auth3:'Login With Email',
     login:'Login',
     register:'Registeration',
-    enterPhone:'Enter your phone number without 0 at begining',
+    enterPhone:'Enter your phone number',
     enterEmail:'Enter your Email',
     continue:'Continue',
     new:'Creat New Account',
@@ -229,7 +229,7 @@ const enTranslations = {
 
   registeration1:'Name',
   registeration2:'Email',
-  registeration3:'Phone (without 0 at begining)',
+  registeration3:'Enter your phone number',
   registeration4:'Register',
   registeration5:'Already have an account ?',
   sim:'Related Products',
@@ -241,6 +241,17 @@ const enTranslations = {
   account5:'My Orders',
   account6:'profile',
   account7:'logout',
+  download:'Download the invoice',
+  paidDone:'Payment completed successfully',
+  delDone:'Delivered',
+
+  pr1:'DATE',
+  pr2:'TOTAL',
+  pr3:'PAID',
+  pr4:'DELIVERED',
+  pr5:'Details',
+  noOrders:'There is no orders yet.'
+
 };
 
 export default enTranslations;
