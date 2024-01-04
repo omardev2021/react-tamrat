@@ -48,8 +48,8 @@ const enTranslations = {
     reviews:'Reviews',
     price:'price: ',
     status:'Status',
-    in:'In stock',
-    out:'Out of stock',
+    in:'Available',
+    out:'Unavailable',
 
     qty:'Quantity',
     add:'Add to cart',
@@ -181,7 +181,7 @@ const enTranslations = {
   sagieTitle:'Sagie Date',
   sukariTitle:'Natural and Fresh Sukari Dates',
   
-  freeShipping:'Free shipping for orders above 250 SAR',
+  freeShipping:'Free shipping for orders above SAR 250',
 
   header20:'Main Menu',
 
@@ -214,6 +214,8 @@ const enTranslations = {
   fail1:'Payment failed. Please try again.',
 
   box:'Box - one piece , the minimum order quantity is 50 boxes',
+  box1:'Box - one piece',
+
   kg:'Kilogram',
   half:'Half kilogram',
   seven:'Box - 7 Pieces',

@@ -87,7 +87,7 @@ const MobileNavigationMenu = ({closeMenu}) => {
             <Link to={'/date-packages'} className="menu-title" onClick={closeMenu}>{t('header8')}</Link>
         </li>
         <li className="menu-category">
-            <Link to={'/blog'} className="menu-title" onClick={closeMenu}> {t('header9')}</Link>
+            <Link to={'/blog/معلومات-عامة-شجر-النخيل'} className="menu-title" onClick={closeMenu}> {t('header9')}</Link>
         </li>
         <li className="menu-category">
             <Link to={'/contact-us'} className="menu-title" onClick={closeMenu}>{t('header10')}</Link>

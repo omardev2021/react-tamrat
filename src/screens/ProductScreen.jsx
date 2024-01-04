@@ -14,7 +14,7 @@ import size2 from '../assets/size2.png';
 import size3 from '../assets/size3.png';
 import size4 from '../assets/size4.png';
 import { useTranslation } from 'react-i18next';
-import { FaAngleLeft, FaAngleRight ,FaCartPlus,FaCheck , FaCheckCircle, FaTimes, FaTimesCircle} from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight ,FaCartPlus , FaCheckCircle, FaTimesCircle} from "react-icons/fa";
 import Skeleton from 'react-loading-skeleton';
 import Meta from '../components/Meta';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -265,7 +265,7 @@ return (
                   value={product.product.rating}
                   text={`${product.product.numReviews}`}
                 />
-                <h3 className='mt-1'>{i18n.language === 'en' ? product.product.name_en :product.product.name_ar}</h3>
+                <h3 className='mt-1' style={{'color':'black'}}>{i18n.language === 'en' ? product.product.name_en :product.product.name_ar}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
               {i18n.language === 'en' ? product.product.origin_en :product.product.origin_ar}
@@ -350,7 +350,7 @@ return (
       <span>{i18n.language === 'en' ? product.origin_en :product.origin_ar}</span>
     </div>
     <Link to={`/products/${product.slug}`}>
-  <button className="btn-buy mt-4 a-link">{t('home4')}</button>
+  <button className="btn-buy-main mt-4 a-link">{t('home4')}</button>
 </Link>
   </Card>
 </Col>

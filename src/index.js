@@ -36,15 +36,13 @@ import OrderScreen from './screens/OrderScreen';
 import i18n from './i18n';
 import SizesScreen from './screens/SizesScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import Blog from './screens/blog/Blog';
+
 import ContactScreen from './screens/ContactScreen';
 import PrivacyPolicy from './screens/policies/PrivacyScreen';
 import ReturnPolicy from './screens/policies/ReturnScreen';
 import FailScreen from './screens/status/FailScreen';
 import SuccessScreen from './screens/status/SuccessScreen';
-import Benifits from './screens/blog/Benifits';
-import Dates from './screens/blog/Dates';
-import Why from './screens/blog/Why';
+
 import FaqScreen from './screens/FaqScreen';
 import SearchScreen from './screens/SearchScreen';
 import AdminRoute from './components/AdminRoute';
@@ -52,6 +50,12 @@ import OrderListScreen from './screens/admin/OrderListScreen';
 import ReceiptsScreen from './screens/admin/ReceiptsScreen';
 import NewslettersScreen from './screens/admin/NewslettersScreen';
 import ContactsScreen from './screens/admin/ContactsScreen';
+import BlogPage from './screens/blog/BlogPage';
+import Article1 from './screens/blog/Article1';
+import Article2 from './screens/blog/Article2';
+import Article3 from './screens/blog/Article3';
+import Article4 from './screens/blog/Article4';
+import Article5 from './screens/blog/Article5';
 
 
 
@@ -66,7 +70,6 @@ const router = createBrowserRouter(
       <Route path='/shipping' element={<ShippingScreen />} />
       <Route path='/payment' element={<PaymentScreen />} />
       <Route path='/placeorder' element={<PlaceOrderScreen />} />
-      {/* <Route path='/login' element={<LoginScreen />} /> */}
       <Route path='/shopping' element={<ShoppingScreen />} />
       <Route path='/ajwa-date' element={<AjwaDates />} />
       <Route path='/sukari-date' element={<SukariDates />} />
@@ -75,16 +78,23 @@ const router = createBrowserRouter(
       <Route path='/mabroom-date' element={<MabroomDates />} />
       <Route path='/date-packages' element={<SizesScreen />} />
       <Route path='/profile' element={<ProfileScreen />} />
-      <Route path='/blog' element={<Blog />} />
       <Route path='/contact-us' element={<ContactScreen />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/return-policy' element={<ReturnPolicy />} />
       <Route path='/fail' element={<FailScreen />} />
       <Route path='/success' element={<SuccessScreen />} />
-      <Route path='/health-benefits-of-dates' element={<Benifits />} />
 
-      <Route path='/dates-and-how-they-differ' element={<Dates />} />
-      <Route path='/dates-for-breaking-the-fast' element={<Why />} />
+      <Route path='/blog/معلومات-عامة-شجر-النخيل' element={<BlogPage />} />
+      
+      <Route path='/blog/أنواع-التمور-في-العالم' element={<Article1 />} />
+      <Route path='/blog/ماهو-نوع-السكر-في-التمر' element={<Article2 />} />
+      <Route path='/blog/الفوائد-الصحية-المترتبة-من-تناول-التمر' element={<Article3 />} />
+      <Route path='/blog/متى-ينصح-بتناول-التمر' element={<Article4 />} />
+      <Route path='/blog/أهمية-الألياف-في-التمر' element={<Article5 />} />
+
+  
+
+
       <Route path='/frequently-asked-questions' element={<FaqScreen />} />
 
       <Route path='/shopping/products/search' element={<SearchScreen />} />

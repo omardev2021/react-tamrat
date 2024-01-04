@@ -13,9 +13,10 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: 'Welcome To ProShop',
-  description: 'We sell the best products for cheap',
-  keywords: 'electronics, buy electronics, cheap electroincs',
+  title: 'تمرات',
+  description: 'نقدم تشكيلة واسعة من التمور الأصلية بجودة عالية. تصفح موقعنا الآن للاطلاع على تشكيلتنا المتنوعة من التمور',
+  keywords: 'تمرات, تمر عجوة, عجوة المدينة, تمر صقعي, تمر سكري, تمر مجدول, تمر مجهول,تمور طازجة, تمور, تمر مبروم,tamrat, tmarat dates, tamratdates',
 };
+
 
 export default Meta;

@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-loading-skeleton/dist/skeleton.css'
+
 import { I18nextProvider } from 'react-i18next';
 import { useTranslation } from 'react-i18next';
 import ScrollToTop from './components/ScrollToTop';

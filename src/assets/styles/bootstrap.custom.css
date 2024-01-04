@@ -4923,7 +4923,7 @@ fieldset:disabled .btn {
 .badge {
   --bs-badge-padding-x: 0.65em;
   --bs-badge-padding-y: 0.35em;
-  --bs-badge-font-size: 0.75em;
+  /* --bs-badge-font-size: 0.75em; */
   --bs-badge-font-weight: 700;
   --bs-badge-color: #fff;
   --bs-badge-border-radius: 0.375rem;
@@ -8858,13 +8858,13 @@ fieldset:disabled .btn {
   color: var(--bs-dark-text) !important;
 }
 
-.bg-primary {
+/* .bg-primary {
   --bs-bg-opacity: 1;
   background-color: rgba(
     var(--bs-primary-rgb),
     var(--bs-bg-opacity)
   ) !important;
-}
+} */
 
 .bg-secondary {
   --bs-bg-opacity: 1;

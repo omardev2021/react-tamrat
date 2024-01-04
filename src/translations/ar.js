@@ -49,7 +49,7 @@ const arTranslations = {
     price:'السعر: ',
 
     status:'الحالة',
-    in:'متوفر في المخزون',
+    in:'متوفر',
     out:'نفذت الكمية',
     qty:'الكمية',
     add:'إضافة الى السلة',
@@ -178,7 +178,7 @@ const arTranslations = {
     majhoolTitle:'تمر مجدول الفاخر والمميز',
     sagieTitle:'تمر صقعي',
     sukariTitle:'تمر سكري طبيعي وطازج',
-    freeShipping:'شحن مجاني للطلبات فوق ٢٥٠ ريال',
+    freeShipping:'شحن مجاني للطلبات فوق 250 ريال',
 
 
     header20:'القائمة الرئيسية',
@@ -213,6 +213,7 @@ const arTranslations = {
   fail1:'فشلت عملية الدفع ، الرجاء المحاولة مرة اخرى',
 
   box:'علبة - حبة واحدة ، اقل كمية للطلب ٥٠ علبة',
+  box1:'علبة - حبة واحدة',
   kg:'كيلو',
   half:'نصف كيلو',
   seven:'علبة - ٧ حبات',
@@ -253,3 +254,4 @@ const arTranslations = {
   };
   
   export default arTranslations;
+  

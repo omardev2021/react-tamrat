@@ -239,7 +239,7 @@ setMenu(false)
                               <Link to="/date-packages" className="menu-title">{t('header8')}</Link>
                           </li>
                           <li className="menu-category">
-                              <Link to="/blog" className="menu-title">{t('header9')}</Link>
+                              <Link to="/blog/معلومات-عامة-شجر-النخيل" className="menu-title">{t('header9')}</Link>
                           </li>
                           {/* <li className="menu-category">
                               <a to="/about" className="menu-title">About us</a>
