@@ -1,3 +1,4 @@
+
 *{
   padding: 0;
   margin: 0;
@@ -410,13 +411,13 @@ span.m-1 {
 
 .btn-qickshop{
 
-  background-color: #7C9D64;
-  border: 0px solid;
-  border-radius: 999px;
-    width: 150px;
-  margin: auto;
-  color: #ffffff;
-  padding: 9px;
+  background-color: #7C9D64 !important;
+  border: 0px solid !important;
+  border-radius: 999px !important;
+    width: 150px !important;
+  margin: auto !important;
+  color: #ffffff !important;
+  padding: 9px !important;
 
 }
 .btn-qickshop:hover{

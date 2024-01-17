@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
@@ -19,6 +18,7 @@ import Skeleton from 'react-loading-skeleton';
 import Meta from '../components/Meta';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import Select from 'react-select';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -35,7 +35,7 @@ const ProductScreen = () => {
 
   const [qty, setQty] = useState(1); // <-- add this
   
-
+const navigate = useNavigate();
 
 
 
@@ -48,6 +48,87 @@ const ProductScreen = () => {
     isLoading,
     error,
   } = useGetProductDetailsQuery(productId);
+
+
+  const optionsKilo = [
+    { value: '1.00', label: t('kg') },
+    { value: '0.50', label: t('half') },
+    { value: '0.30', label: t('seven') },
+    { value: '0.10', label: t('box1') },
+    // Add more options as needed
+  ]; 
+
+  const optionsHalf = [
+    { value: '0.50', label: t('half') },
+    { value: '1.00', label: t('kg') },
+    { value: '0.30', label: t('seven') },
+    { value: '0.10', label: t('box1') },
+    // Add more options as needed
+  ]; 
+
+  const optionsSeven = [
+    { value: '0.30', label: t('seven') },
+    { value: '1.00', label: t('kg') },
+    { value: '0.50', label: t('half') },
+    { value: '0.10', label: t('box1') },
+    // Add more options as needed
+  ]; 
+
+  const optionsOne = [
+    { value: '0.10', label: t('box1') },
+    { value: '1.00', label: t('kg') },
+    { value: '0.50', label: t('half') },
+    { value: '0.30', label: t('seven') },
+
+    // Add more options as needed
+  ]; 
+
+
+
+
+
+
+   const [selectedKiloOption] = useState(optionsKilo[0]); 
+   
+   const [selectedHalfOption] = useState(optionsHalf[0]); // Set the default selected option
+   const [selectedSevenOption] = useState(optionsSeven[0]); // Set the default selected option
+   const [selectedOneOption] = useState(optionsOne[0]); // Set the default selected option
+
+   
+   
+   // Set the default selected option
+
+  const handleSelectChange = (selectedOption) => {
+  
+    if(selectedOption.value === '1.00') {
+
+      navigate(`${product.product.kilo_url}`)
+    } if (selectedOption.value === '0.50') {
+      navigate(`${product.product.half_url}`)
+    }if (selectedOption.value === '0.30') {
+      navigate(`${product.product.seven_url}`)
+    }if (selectedOption.value === '0.10') {
+      navigate(`${product.product.one_url}`)
+    }
+    // Perform any additional logic based on the selected option
+  };
+
+
+    // Custom styles for react-select
+    const customStyles = {
+      control: (provided, state) => ({
+        ...provided,
+        border: '2px solid rgb(124, 157, 100)', // Border color
+        borderRadius: '8px',
+        boxShadow: state.isFocused ? '0 0 0 2px #4115BA' : 'none', // Add box shadow on focus
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isSelected ? 'rgb(124, 157, 100)' : 'white', // Background color for selected option
+        color: state.isSelected ? 'white' : 'rgb(124, 157, 100)', // Text color
+      }),
+    };
+
 
   if(isLoading) {
     return (<>
@@ -288,6 +369,59 @@ return (
               <ListGroup.Item>
                 {i18n.language === 'en' ? product.product.description_en :product.product.description_ar}
             
+              </ListGroup.Item>
+              <ListGroup.Item>
+              {
+          product.product.weight === "1.00" && (
+            <Select
+            value={selectedKiloOption}
+            onChange={handleSelectChange}
+            placeholder="Select an option"
+            options={optionsKilo}
+            styles={customStyles}
+          />
+     
+          ) 
+        }
+
+{
+          product.product.weight === "0.50" && (
+            <Select
+            value={selectedHalfOption}
+            onChange={handleSelectChange}
+            placeholder="Select an option"
+            options={optionsHalf}
+            styles={customStyles}
+          />
+     
+          ) 
+        }
+
+{
+          product.product.weight === "0.30" && (
+            <Select
+            value={selectedSevenOption}
+            onChange={handleSelectChange}
+            placeholder="Select an option"
+            options={optionsSeven}
+            styles={customStyles}
+          />
+     
+          ) 
+        }
+
+{
+          product.product.weight === "0.10" && (
+            <Select
+            value={selectedOneOption}
+            onChange={handleSelectChange}
+            placeholder="Select an option"
+            options={optionsOne}
+            styles={customStyles}
+          />
+     
+          ) 
+        }
               </ListGroup.Item>
               <ListGroup.Item>
                       <Row className='align-items-center'>

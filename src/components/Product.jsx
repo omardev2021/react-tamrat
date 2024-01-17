@@ -37,6 +37,7 @@ function Product({ product }) {
   const addToCartFirst = () => {
     
     dispatch(addToCart({ ...product, qty }));
+    setQty(1)
     if(i18n.language === 'en') {
       toast.success('The product has been added to the cart!');
 
