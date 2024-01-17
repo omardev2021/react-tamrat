@@ -75,6 +75,11 @@ const PlaceOrderScreen = () => {
   const placeOrderHandler = async () => {
 
     try {
+      const totalWeight = cart.cartItems.reduce((acc, item) => {
+        const itemWeight = parseFloat(item.weight) * item.qty;
+        return acc + itemWeight;
+      }, 0);
+  
       
       const res = await createOrder({
         orderItems: cart.cartItems,
@@ -85,7 +90,7 @@ const PlaceOrderScreen = () => {
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         totalPrice: cart.totalPrice,
-        weight:'22.00',
+        weight:totalWeight,
         discount:cart.discount
       }).unwrap();
 

@@ -2,7 +2,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Container, Navbar, Nav } from 'react-bootstrap';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
-import { useConfirmOrderMutation, useGetOrdersQuery } from '../../slices/ordersApiSlice';
+import { useConfirmOrderMutation, useGetOrdersQuery ,useMakeShippmentMutation} from '../../slices/ordersApiSlice';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
   const [confirmOrder] = useConfirmOrderMutation();
+  const [makeShippment] = useMakeShippmentMutation();
     const navigate = useNavigate();
 
   const confirmBank = async (orderId) => {
@@ -22,6 +23,20 @@ const OrderListScreen = () => {
     } catch (error) {
       console.error('Error:', error);
       toast.error(error.message || 'Failed to confirm payment. Please try again.');
+      // Handle the error and provide feedback to the user
+    }
+  };
+
+
+  const makeShippmentHandler = async (orderId) => {
+    try {
+       await makeShippment({  orderId }).unwrap();
+      toast.success('Shippment confirmed successfully!');
+      navigate(`/orders/${orderId}`)
+      // Additional logic after confirming payment
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error(error.message || 'Failed to confirm shippment. Please try again.');
       // Handle the error and provide feedback to the user
     }
   };
@@ -58,6 +73,12 @@ const OrderListScreen = () => {
             <Nav.Link >
             <Link to={'/admin/newsletters'}>
                 Newsletter Subscribtions
+                </Link>
+                </Nav.Link>
+
+                <Nav.Link >
+            <Link to={'/admin/shippments'}>
+                Shippments
                 </Link>
                 </Nav.Link>
    
@@ -121,6 +142,16 @@ const OrderListScreen = () => {
                     
                        <Button variant='success' className='btn-sm' onClick={() => confirmBank(order.id)}>
                          Confirm Payment
+                       </Button>
+                     
+                   </td>
+                )} 
+
+{ order.isDelivered === 0 && (
+                     <td>
+                    
+                       <Button variant='success' className='btn-sm' onClick={() => makeShippmentHandler(order.id)}>
+                         Confirm Shippment
                        </Button>
                      
                    </td>

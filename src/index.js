@@ -56,6 +56,7 @@ import Article2 from './screens/blog/Article2';
 import Article3 from './screens/blog/Article3';
 import Article4 from './screens/blog/Article4';
 import Article5 from './screens/blog/Article5';
+import ShippmentsScreen from './screens/admin/ShippmentsScreen';
 
 
 
@@ -106,6 +107,8 @@ const router = createBrowserRouter(
   <Route path='/admin/newsletters' element={<NewslettersScreen />} />
 
   <Route path='/admin/receipts' element={<ReceiptsScreen />} />
+  <Route path='/admin/shippments' element={<ShippmentsScreen />} />
+  
 
 </Route>
 

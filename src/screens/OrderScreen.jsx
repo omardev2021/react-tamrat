@@ -160,6 +160,8 @@ console.log(res)
     </p>
     {order.order.isDelivered === 1 ? (
       <Message variant='success'>{t('delDone')}</Message>
+    ) : order.order.isDelivered === 5 ? (
+      <Message variant='success'>{t('place120')}</Message>
     ) : (
       <Message variant='danger'>{t('place6')}</Message>
     )}

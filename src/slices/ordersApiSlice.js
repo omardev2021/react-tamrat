@@ -98,7 +98,21 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         }),
         keepUnusedDataFor: 5,
       }),
+      getShippments: builder.query({
+        query: () => ({
+          url: `${ORDERS_URL}/admin/shippments`,
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      makeShippment: builder.mutation({
+        query: (order) => ({
+          url: `${ORDERS_URL}/admin/make-shippment`,
+          method: 'POST',
+          body: { ...order },
+        
+        }),
+      }),
   }),
 });
 
-export const {useGetContactsQuery,useGetLettersQuery,useGetReceiptsQuery,useGetOrdersQuery, useCreateOrderMutation,useConfirmOrderMutation ,usePayOrderMutation ,useUploadOrderMutation, useGetOrderDetailsQuery,useGetMyOrdersQuery,} = ordersApiSlice;
+export const {useGetShippmentsQuery,useMakeShippmentMutation,useGetContactsQuery,useGetLettersQuery,useGetReceiptsQuery,useGetOrdersQuery, useCreateOrderMutation,useConfirmOrderMutation ,usePayOrderMutation ,useUploadOrderMutation, useGetOrderDetailsQuery,useGetMyOrdersQuery,} = ordersApiSlice;

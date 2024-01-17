@@ -250,7 +250,8 @@ const arTranslations = {
   pr3:'حالة الدفع',
   pr4:'حالة الشحن',
   pr5:'التفاصيل',
-  noOrders:'ليس لديك طلبات بعد'
+  noOrders:'ليس لديك طلبات بعد',
+  place120:'تم تجهيز الشحنة واصدار بوليصة الشحن'
   };
   
   export default arTranslations;

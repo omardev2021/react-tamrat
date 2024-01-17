@@ -1,19 +1,20 @@
 import React from 'react'
 import { Table, Container, Navbar, Nav } from 'react-bootstrap';
 
-import { useGetContactsQuery } from '../../slices/ordersApiSlice';
+import { useGetShippmentsQuery } from '../../slices/ordersApiSlice';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../../constants';
 
-function ContactsScreen() {
-    const { data: orders, isLoading, error } = useGetContactsQuery();
+function ShippmentsScreen() {
+    const { data: orders, isLoading, error } = useGetShippmentsQuery();
   
  
   
     return (
       <Container dir='ltr'>
-             <Navbar bg='light' expand='lg' className='mb-5'>
+            <Navbar bg='light' expand='lg' className='mb-5'>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mr-auto'>
@@ -25,7 +26,7 @@ function ContactsScreen() {
                   </Nav.Link>
               
           
-            <Nav.Link>
+            <Nav.Link >
             <Link to={'/admin/receipts'}>
                 Bank Receipts
                 </Link>
@@ -40,13 +41,13 @@ function ContactsScreen() {
                 </Nav.Link>
         
           
-            <Nav.Link active>
+            <Nav.Link >
             <Link to={'/admin/newsletters'}>
                 Newsletter Subscribtions
                 </Link>
                 </Nav.Link>
 
-                <Nav.Link >
+                <Nav.Link active>
             <Link to={'/admin/shippments'}>
                 Shippments
                 </Link>
@@ -66,25 +67,22 @@ function ContactsScreen() {
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
-              <th>name</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>message</th>
-              
-            
+                <th>Order ID</th>
+                <th>awb_no</th>
+                <th>label_print</th>
+                <th>created at</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
                 <tr key={order.id}>
-                                      <td>{order.name}</td>
+                  <td>{order.order_id}</td>
+                  <td>{order.awb_no}</td>
+                  <td><a href={`${order.label_print}`} target={'_blank'} rel="noreferrer">print</a></td>
 
-                  <td>{order.email}</td>
-                  <td>{order.phone}</td>
-                  <td>{order.content}</td>
+                  <td>{order.created_at ? order.created_at.substring(0, 10) : ''}</td>
+                  
 
-
-             
                
            
              
@@ -97,4 +95,4 @@ function ContactsScreen() {
     );
 }
 
-export default ContactsScreen
+export default ShippmentsScreen

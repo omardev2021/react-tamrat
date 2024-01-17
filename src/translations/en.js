@@ -252,7 +252,8 @@ const enTranslations = {
   pr3:'PAID',
   pr4:'DELIVERED',
   pr5:'Details',
-  noOrders:'There is no orders yet.'
+  noOrders:'There is no orders yet.',
+  place120:'The shipment was prepared and a bill of lading was issued'
 
 };
 

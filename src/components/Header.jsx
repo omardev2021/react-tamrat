@@ -40,6 +40,7 @@ const Header = () => {
 
 
   const handleSearch = () => {
+    setSearchTerm('')
     navigate(`/shopping/products/search?term=${searchTerm}`);
 
   }

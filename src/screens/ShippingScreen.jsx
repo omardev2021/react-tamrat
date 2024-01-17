@@ -124,7 +124,7 @@ const ShippingScreen = () => {
                 <div>{error?.data.message || error.error}</div>
               ) : (
       countries.find((c) => c.id === 1)?.cities.map((city) => (
-        <option key={city.id} value= {i18n.language === 'ar' ? city.city_ar : city.city_en}>
+        <option key={city.id} value= {city.city_en}>
           {i18n.language === 'ar' ? city.city_ar : city.city_en}
         </option>
      )))}

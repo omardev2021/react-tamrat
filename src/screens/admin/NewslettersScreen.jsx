@@ -45,6 +45,12 @@ function NewslettersScreen() {
                 Newsletter Subscribtions
                 </Link>
                 </Nav.Link>
+
+                <Nav.Link >
+            <Link to={'/admin/shippments'}>
+                Shippments
+                </Link>
+                </Nav.Link>
    
           </Nav>
         </Navbar.Collapse>
