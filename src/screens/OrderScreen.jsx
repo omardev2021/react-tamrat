@@ -158,6 +158,19 @@ console.log(res)
       <strong>{t('place5')}</strong>
       {order.order.address}, {order.order.city} , {order.order.country}
     </p>
+    <p>
+      <strong>{t('orderType')}</strong>
+      <br />
+      {order.order.type === 'default' ? t('de') : order.order.type === 'someone' ? t('de1') : order.order.type === 'gift' ? t('de2') : ''  }
+    </p>
+    {order.order.type ==='gift' && (
+      <p>
+      <strong>{t('GiftMessage')}</strong>
+      <br />
+      {order.order.message}
+    </p>
+    )}
+    
     {order.order.isDelivered === 1 ? (
       <Message variant='success'>{t('delDone')}</Message>
     ) : order.order.isDelivered === 5 ? (

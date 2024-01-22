@@ -50,7 +50,7 @@ function Product({ product }) {
 
   return (
     <>
-      <Col sm={12} md={4} >
+      <Col sm={12} md={4} className='mb-3'>
         <div className="card text-center position-relative "> 
           <div className="card-img">
             <Image src={product.image_path} alt="ajaw fresh date" fluid className="w-75 sh" />

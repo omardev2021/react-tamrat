@@ -24,16 +24,19 @@ console.log(state.discount);
     // Calculate the shipping price
     // state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
 
-    if(state.itemsPrice > 250) {
+    if(state.itemsPrice > 250 && (state.shippingAddress.country == 'Saudi Arabia' || state.shippingAddress.country == 'المملكة العربية السعودية')) {
           state.shippingPrice = addDecimals(0);
+         
     }
 
     else {
       if(state.shippingAddress.country == 'Saudi Arabia' || state.shippingAddress.country == 'المملكة العربية السعودية') {
 
         state.shippingPrice = addDecimals(25);
+        
       }else{
         state.shippingPrice = addDecimals(200);
+       
       }
 
     }
@@ -59,7 +62,7 @@ console.log(state.discount);
   
     // Calculate the shipping price
     // state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
-    if(state.itemsPrice > 250) {
+    if(state.itemsPrice > 250 && (state.shippingAddress.country == 'Saudi Arabia' || state.shippingAddress.country == 'المملكة العربية السعودية')) {
       state.shippingPrice = addDecimals(0);
 }
 

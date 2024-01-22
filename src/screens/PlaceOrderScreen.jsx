@@ -79,8 +79,7 @@ const PlaceOrderScreen = () => {
         const itemWeight = parseFloat(item.weight) * item.qty;
         return acc + itemWeight;
       }, 0);
-  
-      
+
       const res = await createOrder({
         orderItems: cart.cartItems,
         address: cart.shippingAddress.address,
@@ -91,7 +90,12 @@ const PlaceOrderScreen = () => {
         shippingPrice: cart.shippingPrice,
         totalPrice: cart.totalPrice,
         weight:totalWeight,
-        discount:cart.discount
+        discount:cart.discount,
+        type:cart.shippingAddress.type,
+        name:cart.shippingAddress.type === 'default' ? userInfo.user.name : cart.shippingAddress.name,
+        phone:cart.shippingAddress.type === 'default' ? userInfo.user.phone : cart.shippingAddress.phone,
+        message:cart.shippingAddress.type === 'gift' ? cart.shippingAddress.message : '' ,
+
       }).unwrap();
 
       dispatch(clearCartItems());

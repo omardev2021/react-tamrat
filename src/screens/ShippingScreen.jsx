@@ -23,10 +23,37 @@ const ShippingScreen = () => {
 
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
-  );
+
   const [country, setCountry] = useState(shippingAddress.country || '');
+
+    const handleLogic = () => {
+      const isShippingAddressNotEmpty = Object.keys(shippingAddress).length > 0;
+
+      if(isShippingAddressNotEmpty && shippingAddress.type === 'default') {
+        console.log('1')
+        return true
+
+      } else if(isShippingAddressNotEmpty && shippingAddress.type !== 'default') {
+        console.log('2')
+        console.log(shippingAddress)
+return false
+      } else  {
+        console.log('3')
+        return true
+      }
+    }
+  const [sendAsGif, setSendAsGif] = useState(shippingAddress.type === 'gift' ? true : false || false);
+  const [receiveBySomeoneElse, setReceiveBySomeoneElse] = useState(shippingAddress.type === 'someone' ? true : false || false);
+  const [receive, setReceive] = useState(handleLogic);
+
+
+  const [someoneName, setSomeoneName] = useState(shippingAddress.name || '');
+  const [someonePhone, setSomeonePhone] = useState(shippingAddress.phone || '');
+
+  const [giftName, setGiftName] = useState(shippingAddress.name || '');
+  const [giftPhone, setGiftPhone] = useState(shippingAddress.phone || '');
+  const [giftMessage, setGiftMessage] = useState(shippingAddress.message || '');
+
 
   const {
     data: countries,
@@ -39,7 +66,27 @@ const ShippingScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+
+    if(receive) {
+    
+      dispatch(saveShippingAddress({ address, city, country , type:'default' }));
+      console.log('rec')
+
+    }else if (receiveBySomeoneElse) {
+      
+      dispatch(saveShippingAddress({ address, city, country , type:'someone',name:someoneName,phone:someonePhone }));
+      console.log('else')
+    } else if(sendAsGif) {
+      dispatch(saveShippingAddress({ address, city, country , type:'gift',name:giftName,phone:giftPhone,message:giftMessage }));
+      console.log('gift')
+
+    } else {
+      dispatch(saveShippingAddress({ address, city, country , type:'default' }));
+
+    }
+
+
+
     navigate('/payment');
   };
 
@@ -49,6 +96,40 @@ const ShippingScreen = () => {
     
     setCity(''); // Clear the city when the country changes
   };
+
+  const handleSendAsGifChange = () => {
+    if(sendAsGif && (!receiveBySomeoneElse || !receive)) {
+      return
+    }
+    setSendAsGif(!sendAsGif);
+    if (receiveBySomeoneElse || receive) {
+      setReceiveBySomeoneElse(false);
+      setReceive(false)
+    }
+  };
+
+  const handleReceiveBySomeoneElseChange = () => {
+    if(receiveBySomeoneElse && (!setSendAsGif || !receive)) {
+      return
+    }
+    setReceiveBySomeoneElse(!receiveBySomeoneElse);
+    if (setSendAsGif || receive) {
+      setSendAsGif(false);
+      setReceive(false)
+    }
+  };
+
+  const handleReceiveChange = () => {
+    if(receive && (!sendAsGif || !receiveBySomeoneElse)) {
+      return
+    }
+    setReceive(!receive);
+    if (sendAsGif || receiveBySomeoneElse) {
+      setSendAsGif(false);
+      setReceiveBySomeoneElse(false);
+    }
+  };
+
 
   useEffect(() => {
     if (!userInfo) {
@@ -155,18 +236,101 @@ const ShippingScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group className='my-2' controlId='postalCode'>
-          <Form.Label>{t('shipping6')}</Form.Label>
+        <Form.Group className='my-2' controlId='receive'>
+        <Form.Check
+          type='checkbox'
+          label={t('shipform1')}
+          checked={receive}
+          onChange={handleReceiveChange}
+        />
+
+   </Form.Group>
+
+
+        <Form.Group className='my-2' controlId='receiveBySomeoneElse'>
+        <Form.Check
+          type='checkbox'
+          label={t('shipform2')}
+          checked={receiveBySomeoneElse}
+          onChange={handleReceiveBySomeoneElseChange}
+        />
+
+   </Form.Group>
+
+   {receiveBySomeoneElse && (
+     <>
+     <Form.Group className='my-2' controlId='someoneName1'>
+          <Form.Label>{t('shipform4')}</Form.Label>
           <Form.Control
             type='text'
-            placeholder={t('shipping7')}
-            value={postalCode}
+            placeholder={t('shipform5')}
+            value={someoneName}
             required
-            onChange={(e) => setPostalCode(e.target.value)}
+            onChange={(e) => setSomeoneName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
-   
+        <Form.Group className='my-2' controlId='someoneName2'>
+          <Form.Label>{t('shipform6')}</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder={t('shipform7')}
+            value={someonePhone}
+            required
+            onChange={(e) => setSomeonePhone(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+     </>
+   )}
+
+
+   <Form.Group className='my-2' controlId='sendAsGigt'>
+        <Form.Check
+          type='checkbox'
+          label={t('shipform3')}
+          checked={sendAsGif}
+          onChange={handleSendAsGifChange}
+        />
+
+   </Form.Group>
+
+   {sendAsGif && (
+     <>
+        <Form.Group className='my-2' controlId='giftdata1'>
+          <Form.Label>{t('shipform4')}</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder={t('shipform5')}
+            value={giftName}
+            required
+            onChange={(e) => setGiftName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+
+        <Form.Group className='my-2' controlId='giftdata2'>
+          <Form.Label>{t('shipform6')}</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder={t('shipform7')}
+            value={giftPhone}
+            required
+            onChange={(e) => setGiftPhone(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className='my-2' controlId='giftdata3'>
+          <Form.Label>{t('shipform8')}</Form.Label>
+          <Form.Control
+            as='textarea'
+            placeholder={t('shipform9')}
+            value={giftMessage}
+            
+            onChange={(e) => setGiftMessage(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+     </>
+   )}
 
        
         <button id="check" type='submit' className="btn btn-buy mx-1 mb-2 w-100" >

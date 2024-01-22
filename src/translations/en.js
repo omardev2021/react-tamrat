@@ -253,7 +253,23 @@ const enTranslations = {
   pr4:'DELIVERED',
   pr5:'Details',
   noOrders:'There is no orders yet.',
-  place120:'The shipment was prepared and a bill of lading was issued'
+  place120:'The shipment was prepared and a bill of lading was issued',
+
+  shipform1:'I will receive the shipment myself',
+  shipform2:'Someone else will receive the shipment',
+  shipform3:'Send as a gift to someone',
+  shipform4:'Name',
+  shipform5:'Enter a name',
+  shipform6:'Phone',
+  shipform7:'Enter a phone',
+  shipform8:'Message',
+  shipform9:'Enter a Message',
+  orderType:'Receiving the order',
+  GiftMessage:'Message Content',
+  de:'The customer will receive the order himself',
+  de1:'Someone else will receive the order',
+  de2:'Send the order as a gift',
+
 
 };
 
