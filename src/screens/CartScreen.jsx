@@ -117,9 +117,19 @@ const CartScreen = () => {
          
             </ListGroup.Item>
             <ListGroup.Item>
-              {!userInfo && (
-                <>
-                <span>{t('val')}</span>
+              {userInfo ? (
+                   <button
+                   type='button'
+                   id="check"
+                   className='btn btn-buy mx-1 mb-2 w-100'
+                 
+                   onClick={checkoutHandler}
+                 >
+                   {t('checkout')}
+                 </button>
+              ):(
+<>
+          
                 <AuthModal show={show} handleClose={()=>setShow(false)}/>
                 <button
                 type='button'
@@ -128,19 +138,11 @@ const CartScreen = () => {
              
                 onClick={()=>setShow(true)}
               >
-                {t('val2')}
+            {t('checkout')}
               </button>
               </>
               )}
-              <button
-                type='button'
-                id="check"
-                className='btn btn-buy mx-1 mb-2 w-100'
-                disabled={cartItems.length === 0 || !userInfo}
-                onClick={checkoutHandler}
-              >
-                {t('checkout')}
-              </button>
+           
 
             </ListGroup.Item>
           </ListGroup>

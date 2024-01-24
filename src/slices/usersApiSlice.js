@@ -24,6 +24,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/update-user-data`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
     sendEmailApi: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/email`,
@@ -57,5 +64,5 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useContactMutation,useNewsletterMutation,useRegisterMutation, useLoginUserMutation , useSendEmailApiMutation,useSendSmsApiMutation } = usersApiSlice;
+export const { useUpdateProfileMutation,useLoginMutation, useContactMutation,useNewsletterMutation,useRegisterMutation, useLoginUserMutation , useSendEmailApiMutation,useSendSmsApiMutation } = usersApiSlice;
 

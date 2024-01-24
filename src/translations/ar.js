@@ -271,7 +271,7 @@ const arTranslations = {
   de1:'سيقوم شخص اخر باستلام الطلب',
   de2:'ارسال الطلب كهدية',
 
-
+  enterName:'ادخل اسمك',
   };
   
   export default arTranslations;

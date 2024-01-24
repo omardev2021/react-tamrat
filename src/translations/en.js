@@ -235,6 +235,7 @@ const enTranslations = {
   registeration4:'Register',
   registeration5:'Already have an account ?',
   sim:'Related Products',
+  enterName:'Enter your name',
 
   account1:'User Profile',
   account2:'Name',
